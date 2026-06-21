@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Apadrinar un Residente | Catfeina</title>
+    <link rel="icon" type="image/svg+xml" href="/recursos/imagenes/logo-flavicon.svg">
+    <link rel="stylesheet" href="/recursos/css/estilos-globales.css">
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="/recursos/js/tema-tailwind.js"></script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+
+<body class="bg-fondo-claro dark:bg-fondo-oscuro font-display text-texto-principal dark:text-gray-100 min-h-screen flex flex-col">
+
+    <main class="flex-grow py-8 px-4 sm:px-6 lg:px-8 relative overflow-hidden flex items-center justify-center">
+        <!-- Control de navegación de regreso -->
+        <a href="/apadrinar/" class="absolute top-8 left-8 z-50 flex items-center gap-2 text-texto-secundario hover:text-principal font-bold transition-colors group">
+            <span class="material-symbols-outlined group-hover:-translate-x-1 transition-transform">arrow_back</span>
+            <span class="text-xs uppercase tracking-widest">Volver</span>
+        </a>
+
+        <div class="max-w-4xl w-full relative z-10">
+            <div class="mb-10 text-center">
+                <h1 class="text-3xl md:text-5xl font-black tracking-tight leading-none uppercase">Tramitar <span class="text-principal italic">Apadrinamiento</span></h1>
+                <p class="text-sm text-texto-secundario dark:text-gray-400 font-medium mt-2">Un pequeño gesto para ti, una vida entera para ellos.</p>
+            </div>
+
+            <div class="bg-white dark:bg-[#1f1b16] rounded-[3rem] shadow-2xl overflow-hidden flex flex-col lg:flex-row border border-gray-100 dark:border-white/5">
+                <!-- Información visual del animal seleccionado -->
+                <div class="w-full lg:w-80 bg-principal/5 p-8 flex flex-col items-center text-center gap-6 border-b lg:border-b-0 lg:border-r border-gray-100 dark:border-white/5">
+                    <div class="w-40 h-40 rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white dark:border-[#1f1b16] rotate-3">
+                        <img id="img-gato-padrino" src="/recursos/imagenes/logo.webp" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <span class="text-[10px] font-black uppercase tracking-widest text-principal">Tu futuro ahijado</span>
+                        <h3 id="nombre-gato-padrino" class="text-3xl font-black text-texto-principal dark:text-white leading-none">...</h3>
+                    </div>
+                    <div id="resumen-pago" class="mt-auto p-6 bg-white dark:bg-black/20 rounded-[2rem] w-full shadow-sm">
+                        <!-- Contenido dinámico -->
+                    </div>
+                </div>
+
+                <!-- Formulario de tramitación de suscripción -->
+                <div class="flex-1 p-8 md:p-12">
+                    <form id="form-padrinazgo" class="space-y-8" novalidate>
+                        <!-- Selección del nivel de aportación -->
+                        <div class="space-y-3">
+                            <label class="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 ml-2">Elige tu nivel de apoyo</label>
+                            <div class="grid grid-cols-3 gap-3">
+                                <label class="cursor-pointer group">
+                                    <input checked name="plan_apadrinar" type="radio" value="curioso" class="peer sr-only">
+                                    <div class="h-full rounded-2xl border-2 border-gray-100 dark:border-white/5 p-4 text-center peer-checked:border-principal peer-checked:bg-principal/5 transition-all group-hover:border-principal/30">
+                                        <p class="text-[8px] font-black uppercase tracking-widest opacity-60">Curioso</p>
+                                        <p class="text-lg font-black">5€</p>
+                                    </div>
+                                </label>
+                                <label class="cursor-pointer group">
+                                    <input name="plan_apadrinar" type="radio" value="amigo" class="peer sr-only">
+                                    <div class="h-full rounded-2xl border-2 border-gray-100 dark:border-white/5 p-4 text-center peer-checked:border-principal peer-checked:bg-principal/5 transition-all group-hover:border-principal/30">
+                                        <p class="text-[8px] font-black uppercase tracking-widest opacity-60">Amigo</p>
+                                        <p class="text-lg font-black">10€</p>
+                                    </div>
+                                </label>
+                                <label class="cursor-pointer group">
+                                    <input name="plan_apadrinar" type="radio" value="familia" class="peer sr-only">
+                                    <div class="h-full rounded-2xl border-2 border-gray-100 dark:border-white/5 p-4 text-center peer-checked:border-principal peer-checked:bg-principal/5 transition-all group-hover:border-principal/30">
+                                        <p class="text-[8px] font-black uppercase tracking-widest opacity-60">Familia</p>
+                                        <p class="text-lg font-black">25€</p>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Información personal del socio -->
+                        <div class="space-y-4">
+                            <label class="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 ml-2">Tus Datos</label>
+                            <div class="space-y-1">
+                                <input required id="input-nombre" placeholder="Nombre completo" type="text" readonly class="opacity-60">
+                                <p id="error-nombre" class="text-[8px] text-red-500 font-black uppercase hidden ml-2 italic"></p>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="space-y-1">
+                                    <input required id="input-email" type="email" readonly class="opacity-60">
+                                    <p id="error-email" class="text-[8px] text-red-500 font-black uppercase hidden ml-2 italic"></p>
+                                </div>
+                                <div class="space-y-1">
+                                    <input required id="input-telefono" type="tel" placeholder="Teléfono móvil">
+                                    <p id="error-telefono" class="text-[8px] text-red-500 font-black uppercase hidden ml-2 italic"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" id="btn-confirmar" class="w-full py-5 bg-principal text-texto-principal font-black rounded-2xl shadow-xl shadow-principal/20 hover:scale-[1.02] transition-all uppercase tracking-widest text-xs">
+                            CONFIRMAR APADRINAMIENTO
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+    <script src="/components/loader.js"></script>
+    <script src="formulario.js" type="module"></script>
+</body>
+</html>

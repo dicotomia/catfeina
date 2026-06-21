@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Coworking</title>
+    <link rel="preload" href="/recursos/fuentes/Waterlily.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/recursos/css/estilos-globales.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Noto+Sans:wght@400;500;700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="/recursos/js/tema-tailwind.js"></script>
+
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body class="bg-fondo-claro dark:bg-fondo-oscuro text-texto-principal font-display antialiased overflow-x-hidden">
+    <div class="relative flex min-h-screen flex-col">
+
+        <div id="nav-placeholder"></div>
+
+        <main class="flex-grow">
+            <!-- Cabecera de la sección de coworking -->
+            <header class="w-full bg-[#fdfaf7] dark:bg-[#150f0a] pt-16 pb-6 px-4 relative overflow-hidden text-center">
+                <!-- Imagen de fondo -->
+                <div class="absolute inset-0 opacity-20 pointer-events-none">
+                    <img src="/recursos/imagenes/coworking.webp" class="w-full h-full object-cover">
+                </div>
+
+                <div class="max-w-4xl mx-auto relative z-10 flex flex-col gap-2">
+                    <h1 class="font-waterlily text-5xl md:text-7xl text-principal leading-none tracking-normal">
+                        Cat <span class="text-[#181511] dark:text-white italic">Coworking</span>
+                    </h1>
+                    <p class="text-sm md:text-base text-texto-secundario dark:text-gray-400 font-medium max-w-xl mx-auto leading-relaxed">
+                        Un espacio de silencio, alta productividad y compañía ronroneante para nómadas digitales.
+                    </p>
+                    <div class="flex flex-wrap justify-center gap-3 mt-4">
+                        <a href="#pricing"
+                            class="px-8 py-3 bg-principal text-texto-principal font-black rounded-xl hover:scale-105 transition-all shadow-lg shadow-principal/20 text-[10px] uppercase tracking-widest">VER
+                            PLANES</a>
+                        <a href="/reservas/formulario.html?tipo=coworking"
+                            class="px-8 py-3 bg-white/80 dark:bg-white/5 backdrop-blur-md border border-gray-200 dark:border-white/10 text-texto-principal dark:text-white font-black rounded-xl hover:bg-white transition-all text-[10px] uppercase tracking-widest">RESERVAR
+                            PUESTO</a>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Sección informativa y normativa -->
+            <section class="py-16 px-4 sm:px-10 max-w-6xl mx-auto w-full relative">
+                <div
+                    class="absolute -top-24 -right-24 w-64 h-64 bg-principal/5 rounded-full blur-3xl pointer-events-none">
+                </div>
+
+                <div class="flex flex-col gap-12">
+                    <div
+                        class="flex flex-col md:flex-row justify-between items-end gap-6 border-b border-gray-100 dark:border-gray-800 pb-10">
+                        <div class="flex flex-col gap-4 max-w-2xl">
+                            <h2
+                                class="text-texto-principal dark:text-white text-3xl md:text-5xl font-black leading-tight tracking-tight">
+                                Todo lo que<span class="text-principal italic">debes</span> saber.
+                            </h2>
+                            <p class="text-texto-secundario dark:text-gray-400 text-lg font-medium">
+                                El cumplimiento de nuestras <a href="/reglas/"
+                                    class="text-principal underline decoration-principal/30 hover:decoration-principal transition-all">normas
+                                    de convivencia</a> es obligatorio para garantizar el bienestar felino.
+                                <span class="text-xs opacity-70 block mt-2 italic">Catfeina se reserva el derecho de
+                                    admisión en caso de incumplimiento por lo que es muy importante conocerlas.</span>
+                            </p>
+                        </div>
+                        <a href="/reglas/"
+                            class="group bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 px-6 py-3 rounded-2xl text-texto-principal dark:text-white font-black text-sm hover:bg-principal hover:text-texto-principal transition-all shadow-sm flex items-center gap-2">
+                            LEER NORMAS
+                            <span
+                                class="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Galería de espacios disponibles -->
+            <section
+                class="py-20 bg-white dark:bg-[#1a120b] border-y border-gray-100 dark:border-gray-800 overflow-hidden">
+                <div class="max-w-6xl mx-auto px-4 sm:px-10 flex flex-col gap-24">
+
+                    <!-- Sala de trabajo compartido -->
+                    <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+                        <div class="flex-1 w-full relative group">
+                            <div
+                                class="absolute -inset-4 bg-principal/5 rounded-[4rem] scale-95 group-hover:scale-100 transition-transform duration-500">
+                            </div>
+                            <div class="relative h-[400px] rounded-[3.5rem] overflow-hidden shadow-2xl border-4 border-white dark:border-[#1f1b16]">
+                            <img src="/recursos/imagenes/coworking.webp"
+                                class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent">
+                            </div>
+                            </div>
+                        </div>
+                        <div class="flex-1 space-y-6">
+                            <div
+                            class="inline-flex items-center gap-2 text-principal font-black text-xs uppercase tracking-[0.2em]">
+                            <span class="material-symbols-outlined text-sm">groups</span>
+                            Espacio Compartido
+                            </div>
+                            <h2
+                            class="text-4xl md:text-5xl font-black text-texto-principal dark:text-white leading-tight tracking-tight">
+                            La Sala <span class="text-principal italic">Grupal</span>
+                            </h2>
+                            <p class="text-lg text-texto-secundario dark:text-gray-400 leading-relaxed font-medium">
+                            Sumérgete en un oasis de productividad absoluta. Nuestra sala principal ofrece puestos
+                            de trabajo ergonómicos en un ambiente diseñado para el <span
+                                class="text-texto-principal dark:text-white font-bold">silencio</span> y la <span
+                                class="text-texto-principal dark:text-white font-bold">concentración</span>.
+                            </p>
+                            <p class="text-sm text-texto-secundario dark:text-gray-400 leading-relaxed">
+                            Aquí, los protagonistas son los ronroneos. Podrás disfrutar de la compañía de nuestros
+                            gatos residentes mientras fluyes con tus tareas. Ideal para nómadas digitales y
+                            estudiantes que buscan un refugio de calma en pleno centro.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Sala para reuniones privadas -->
+                    <div class="flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-20">
+                        <div class="flex-1 w-full relative group">
+                            <div
+                                class="absolute -inset-4 bg-principal/5 rounded-[4rem] scale-95 group-hover:scale-100 transition-transform duration-500">
+                            </div>
+                            <div
+                            class="relative h-[400px] rounded-[3.5rem] overflow-hidden shadow-2xl border-4 border-white dark:border-[#1f1b16]">
+                            <img src="/recursos/imagenes/coworking-reuniones.webp"
+                                class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent">
+                            </div>
+                            </div>
+                        </div>
+                        <div class="flex-1 space-y-6">
+                            <div
+                            class="inline-flex items-center gap-2 text-principal font-black text-xs uppercase tracking-[0.2em]">
+                            <span class="material-symbols-outlined text-sm">meeting_room</span>
+                            Espacio Privado
+                            </div>
+                            <h2
+                            class="text-4xl md:text-5xl font-black text-texto-principal dark:text-white leading-tight tracking-tight text-right lg:text-left">
+                            Sala de <span class="text-principal italic">Reuniones</span>
+                            </h2>
+                            <p
+                            class="text-lg text-texto-secundario dark:text-gray-400 leading-relaxed font-medium text-right lg:text-left">
+                            El lugar perfecto para cuando necesitas elevar el tono. Totalmente <span
+                                class="text-texto-principal dark:text-white font-bold">insonorizada</span> y
+                            equipada con tecnología de vanguardia para tus presentaciones.
+                            </p>
+                            <p
+                            class="text-sm text-texto-secundario dark:text-gray-400 leading-relaxed text-right lg:text-left">
+                            Equipada con pantalla 4K de gran formato y conexión de alta fidelidad. Es el único
+                            espacio del coworking donde las llamadas y el trabajo en equipo con voz están
+                            permitidos, garantizando que el resto del refugio mantenga su paz característica.
+                            </p>
+                        </div>
+                    </div>
+
+
+                </div>
+            </section>
+
+            <!-- Modal para visualización de imágenes -->
+            <div id="modal-imagen"
+                class="fixed inset-0 z-[9999] hidden items-center justify-center p-4 bg-black/95 backdrop-blur-md transition-all duration-300"
+                data-action="cerrar-imagen">
+                <button class="absolute top-10 right-10 text-white/50 hover:text-white transition-colors p-4">
+                    <span class="material-symbols-outlined text-5xl">close</span>
+                </button>
+                <img id="imagen-grande" src=""
+                    class="max-w-full max-h-[85vh] rounded-3xl shadow-2xl object-contain scale-95 transition-transform duration-500">
+            </div>
+
+            <!-- Tarifas y modalidades de acceso -->
+            <section class="py-16 px-4 sm:px-10 max-w-6xl mx-auto w-full" id="pricing">
+                <div class="text-center mb-16">
+                    <div
+                        class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-principal/20 text-principal font-black text-[10px] uppercase tracking-[0.2em] mb-4">
+                        <span class="material-symbols-outlined text-sm">payments</span>
+                        Pases y Planes
+                    </div>
+                    <h2 class="text-3xl md:text-5xl font-black text-texto-principal dark:text-white tracking-tight">
+                        Elige el plan <span class="text-principal italic">a tu medida</span></h2>
+                    <p class="text-texto-secundario dark:text-gray-400 mt-4 max-w-2xl mx-auto font-medium text-lg">
+                        Diferenciamos nuestros espacios para mayor comodidad.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Plan de acceso individual por horas -->
+                    <div
+                        class="flex flex-col gap-6 rounded-[2.5rem] border border-gray-100 dark:border-white/5 bg-white dark:bg-[#1f1b16] p-7 hover:shadow-2xl transition-all duration-500 relative group">
+                        <div class="absolute -top-3 left-6">
+                            <span
+                                class="bg-gray-100 dark:bg-white/10 text-gray-500 dark:text-gray-400 text-[8px] font-black uppercase tracking-widest px-3 py-1 rounded-full border border-gray-200 dark:border-white/5 shadow-sm">ZONA
+                                COMPARTIDA</span>
+                        </div>
+                        <div class="flex flex-col gap-1 mt-2">
+                            <div class="flex items-center justify-between mb-1">
+                                <h3
+                                    class="text-texto-principal dark:text-white text-base font-black uppercase tracking-tight">
+                                    Nómada</h3>
+                                <span
+                                    class="text-texto-principal text-[9px] font-black uppercase tracking-widest rounded-full bg-principal/10 px-3 py-1 border border-principal/20">Individual</span>
+                            </div>
+                            <div class="flex items-baseline gap-1">
+                                <span
+                                    class="text-4xl font-black tracking-tight text-texto-principal dark:text-white">12<span
+                                        class="text-xl">,90€</span></span>
+                                <span class="text-xs font-bold text-gray-500 italic">/h</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-3 flex-1">
+                            <div
+                                class="flex gap-2 items-center text-[11px] font-bold text-texto-secundario dark:text-gray-400">
+                                <span class="material-symbols-outlined text-gray-300 text-lg">check_circle</span> WiFi
+                                de alta Velocidad
+                            </div>
+                            <div
+                                class="flex gap-2 items-center text-[11px] font-bold text-texto-secundario dark:text-gray-400">
+                                <span class="material-symbols-outlined text-gray-300 text-lg">check_circle</span> 1
+                                Bebida + Dulce o Tosta
+                            </div>
+                            <div
+                                class="flex gap-2 items-center text-[11px] font-black text-principal uppercase tracking-tighter">
+                                <span class="material-symbols-outlined text-lg">laptop_mac</span> Puesto en Sala Grupal
+                            </div>
+                        </div>
+                        <a href="/reservas/formulario.html?tipo=coworking&plan=nomada"
+                            class="w-full py-3 bg-gray-100 dark:bg-white/5 hover:bg-principal hover:text-texto-principal text-texto-principal dark:text-white text-[10px] font-black uppercase tracking-widest rounded-xl transition-all text-center">
+                            RESERVAR
+                        </a>
+                    </div>
+
+                    <!-- Plan grupal para sala de reuniones -->
+                    <div
+                        class="flex flex-col gap-6 rounded-[2.5rem] border border-gray-100 dark:border-white/5 bg-principal/5 dark:bg-principal/10 p-7 hover:shadow-2xl transition-all duration-500 relative group scale-105 shadow-xl z-20">
+                        <div class="absolute -top-3 left-6">
+                            <span
+                                class="bg-principal text-texto-principal text-[8px] font-black uppercase tracking-widest px-3 py-1 rounded-full shadow-md">ZONA
+                                PRIVADA</span>
+                        </div>
+                        <div class="flex flex-col gap-1 mt-2">
+                            <div class="flex items-center justify-between mb-1">
+                                <h3
+                                    class="text-texto-principal dark:text-white text-base font-black uppercase tracking-tight">
+                                    Pack Grupal</h3>
+                                <span
+                                    class="text-texto-principal text-[9px] font-black uppercase tracking-widest rounded-full bg-principal/10 px-3 py-1 border border-principal/20">Reunión</span>
+                            </div>
+                            <div class="flex items-baseline gap-1">
+                                <span
+                                    class="text-4xl font-black tracking-tight text-texto-principal dark:text-white">12<span
+                                        class="text-xl">,90€</span></span>
+                                <span class="text-xs font-bold text-gray-500 italic">/pax</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-3 flex-1">
+                            <div
+                                class="flex gap-2 items-center text-[11px] font-black text-principal uppercase tracking-tighter">
+                                <span class="material-symbols-outlined text-lg">meeting_room</span> EXCLUSIVO SALA
+                                REUNIONES
+                            </div>
+                            <div
+                                class="flex gap-2 items-center text-[11px] font-bold text-texto-secundario dark:text-gray-400">
+                                <span class="material-symbols-outlined text-gray-300 text-lg">check_circle</span>
+                                Pantalla 4K e Insonorizada
+                            </div>
+                            <div
+                                class="flex gap-2 items-center text-[11px] font-bold text-texto-secundario dark:text-gray-400">
+                                <span class="material-symbols-outlined text-gray-300 text-lg">check_circle</span> Mínimo
+                                4 personas
+                            </div>
+                        </div>
+                        <a href="/reservas/formulario.html?tipo=coworking&plan=grupal"
+                            class="w-full py-3 bg-principal hover:bg-principal/90 text-texto-principal text-[10px] font-black uppercase tracking-widest rounded-xl transition-all text-center shadow-lg">
+                            RESERVAR SALA
+                        </a>
+                    </div>
+
+                    <!-- Plan de acceso diario para jornada completa -->
+                    <div
+                        class="flex flex-col gap-6 rounded-[2.5rem] border border-gray-100 dark:border-white/5 bg-white dark:bg-[#1f1b16] p-7 hover:shadow-2xl transition-all duration-500 relative group">
+                        <div class="absolute -top-3 left-6">
+                            <span
+                                class="bg-gray-100 dark:bg-white/10 text-gray-500 dark:text-gray-400 text-[8px] font-black uppercase tracking-widest px-3 py-1 rounded-full border border-gray-200 dark:border-white/5 shadow-sm">ZONA
+                                COMPARTIDA</span>
+                        </div>
+                        <div class="flex flex-col gap-1 mt-2">
+                            <div class="flex items-center justify-between mb-1">
+                                <h3
+                                    class="text-texto-principal dark:text-white text-base font-black uppercase tracking-tight">
+                                    Diario</h3>
+                                <span
+                                    class="text-principal text-[9px] font-black uppercase tracking-widest rounded-full bg-principal/10 px-3 py-1 border border-principal/20">Jornada</span>
+                            </div>
+                            <div class="flex items-baseline gap-1">
+                                <span
+                                    class="text-4xl font-black tracking-tight text-texto-principal dark:text-white">35€</span>
+                                <span class="text-xs font-bold text-gray-500 italic">/día</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-3 flex-1">
+                            <div
+                                class="flex gap-2 items-center text-[11px] font-bold text-texto-secundario dark:text-gray-400">
+                                <span class="material-symbols-outlined text-gray-300 text-lg">check_circle</span> Todo lo del plan Nómada
+                            </div>
+                            <div
+                                class="flex gap-2 items-center text-[11px] font-bold text-texto-secundario dark:text-gray-400">
+                                <span class="material-symbols-outlined text-gray-300 text-lg">check_circle</span> Acceso
+                                Todo el Día
+                            </div>
+                            <div
+                                class="flex gap-2 items-center text-[11px] font-black text-principal uppercase tracking-tighter">
+                                <span class="material-symbols-outlined text-lg">laptop_mac</span> PUESTO EN SALA GRUPAL
+                            </div>
+                        </div>
+                        <a href="/reservas/formulario.html?tipo=coworking&plan=diario"
+                            class="w-full py-3 bg-gray-100 dark:bg-white/5 hover:bg-principal hover:text-texto-principal text-texto-principal dark:text-white text-[10px] font-black uppercase tracking-widest rounded-xl transition-all text-center">
+                            RESERVAR
+                        </a>
+                    </div>
+
+                    <!-- Plan de membresía mensual para residentes -->
+                    <div
+                        class="flex flex-col gap-6 rounded-[2.5rem] border border-gray-100 dark:border-white/5 bg-white dark:bg-[#1f1b16] p-7 hover:shadow-2xl transition-all duration-500 relative group">
+                        <div class="absolute -top-3 left-6">
+                            <span
+                                class="bg-gray-100 dark:bg-white/10 text-gray-500 dark:text-gray-400 text-[8px] font-black uppercase tracking-widest px-3 py-1 rounded-full border border-gray-200 dark:border-white/5 shadow-sm">ZONA
+                                COMPARTIDA</span>
+                        </div>
+                        <div class="flex flex-col gap-1 mt-2">
+                            <div class="flex items-center justify-between mb-1">
+                                <h3
+                                    class="text-texto-principal dark:text-white text-base font-black uppercase tracking-tight">
+                                    Residente</h3>
+                                <span
+                                    class="text-texto-principal text-[9px] font-black uppercase tracking-widest rounded-full bg-gray-100 dark:bg-white/5 px-3 py-1 border border-gray-200 dark:border-white/10">Mensual</span>
+                            </div>
+                            <div class="flex items-baseline gap-1">
+                                <span
+                                    class="text-4xl font-black tracking-tight text-texto-principal dark:text-white">400€</span>
+                                <span class="text-xs font-bold text-gray-500 italic">/mes</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-3 flex-1">
+                            <div
+                                class="flex gap-2 items-center text-[11px] font-bold text-texto-secundario dark:text-gray-400">
+                                <span class="material-symbols-outlined text-gray-300 text-lg">check_circle</span> Acceso
+                                ilimitado
+                            </div>
+                            <div
+                                class="flex gap-2 items-center text-[11px] font-bold text-texto-secundario dark:text-gray-400">
+                                <span class="material-symbols-outlined text-gray-300 text-lg">check_circle</span> Reserva de puesto personal
+                            </div>
+                            <div
+                                class="flex gap-2 items-center text-[11px] font-black text-principal uppercase tracking-tighter">
+                                <span class="material-symbols-outlined text-lg">laptop_mac</span> PUESTO EN SALA GRUPAL
+                            </div>
+                        </div>
+                        <a href="/reservas/formulario.html?tipo=coworking&plan=residente"
+                            class="w-full py-3 bg-gray-100 dark:bg-white/5 hover:bg-principal hover:text-texto-principal text-texto-principal dark:text-white text-[10px] font-black uppercase tracking-widest rounded-xl transition-all text-center">
+                            CONTRATAR
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+
+                    <div id="footer-placeholder"></div>
+            
+                    <script src="/components/loader.js"></script>
+                    <script src="coworking.js" type="module"></script>
+                </div>
+            </body>
+            </html>

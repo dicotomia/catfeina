@@ -1,0 +1,78 @@
+<nav id="main-nav" class="fixed top-0 left-0 w-full z-[100] bg-white dark:bg-[#1a120b] border-b border-gray-100 dark:border-gray-800 px-6 py-3 transition-all duration-300">
+    <div class="max-w-[1400px] mx-auto flex justify-between items-center">
+        <!-- Logotipo corporativo -->
+        <a href="/" class="flex-shrink-0 group">
+            <img src="/recursos/imagenes/logo.webp" alt="Logo Catfeina" class="h-14 md:h-16 w-auto group-hover:scale-105 transition-transform">
+        </a>
+
+        <!-- Lista de enlaces de navegación principal -->
+        <ul id="menu-lista" class="
+            hidden flex-col absolute top-full left-0 w-full bg-white dark:bg-[#1a120b] shadow-xl p-6 gap-6 z-50 border-t border-gray-100 dark:border-gray-800
+            lg:flex lg:flex-row lg:static lg:w-auto lg:shadow-none lg:p-0 lg:gap-8 lg:bg-transparent lg:border-none
+        ">
+            <li><a href="/"
+                    class="nav-link text-xs font-black text-gray-500 tracking-[0.1em] hover:text-principal transition-all block relative py-1 group">
+                    INICIO
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-principal transition-all duration-300 group-hover:w-full"></span>
+                </a>
+            </li>
+            <li><a href="/carta/"
+                    class="nav-link text-xs font-black text-gray-500 tracking-[0.1em] hover:text-principal transition-all block relative py-1 group">
+                    CARTA
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-principal transition-all duration-300 group-hover:w-full"></span>
+                </a>
+            </li>
+            <li><a href="/gatos/"
+                    class="nav-link text-xs font-black text-gray-500 tracking-[0.1em] hover:text-principal transition-all block relative py-1 group">
+                    GATOS
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-principal transition-all duration-300 group-hover:w-full"></span>
+                </a>
+            </li>
+            <li><a href="/eventos/"
+                    class="nav-link text-xs font-black text-gray-500 tracking-[0.1em] hover:text-principal transition-all block relative py-1 group">
+                    EVENTOS
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-principal transition-all duration-300 group-hover:w-full"></span>
+                </a>
+            </li>
+            <li><a href="/coworking/"
+                    class="nav-link text-xs font-black text-gray-500 tracking-[0.1em] hover:text-principal transition-all block relative py-1 group">
+                    COWORKING
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-principal transition-all duration-300 group-hover:w-full"></span>
+                </a>
+            </li>
+            <li><a href="/apadrinar/"
+                    class="nav-link text-xs font-black text-gray-500 tracking-[0.1em] hover:text-principal transition-all block relative py-1 group">
+                    APADRINAR
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-principal transition-all duration-300 group-hover:w-full"></span>
+                </a>
+            </li>
+            <li><a href="/tienda/"
+                    class="nav-link text-xs font-black text-gray-500 tracking-[0.1em] hover:text-principal transition-all block relative py-1 group">
+                    TIENDA
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-principal transition-all duration-300 group-hover:w-full"></span>
+                </a>
+            </li>
+
+            <!-- Controles de acceso para dispositivos móviles -->
+            <div class="flex flex-col gap-4 lg:hidden mt-4 border-t border-gray-100 pt-4">
+                <a href="/login"
+                    class="text-center px-8 py-3 rounded-full bg-gray-100 text-black text-sm font-bold">LOGIN</a>
+                <a href="/reservas/"
+                    class="text-center px-8 py-3 rounded-full bg-principal text-black text-sm font-bold">RESERVAR</a>
+            </div>
+        </ul>
+
+        <!-- Controles de acceso para escritorio -->
+        <div class="hidden lg:flex items-center gap-6">
+            <a href="/login"
+                class="px-8 py-3 rounded-full bg-gray-200 text-black text-sm font-bold hover:bg-gray-300 transition-colors no-underline">LOGIN</a>
+            <a href="/reservas/"
+                class="px-8 py-3 rounded-full bg-principal text-black text-sm font-bold hover:brightness-95 transition-all no-underline">RESERVAR</a>
+        </div>
+
+        <!-- Botón de apertura de menú móvil -->
+        <button id="menu-btn" class="lg:hidden text-gray-700 p-2 focus:outline-none">
+            <span class="material-symbols-outlined text-3xl">menu</span>
+        </button>
+    </div>
+</nav>

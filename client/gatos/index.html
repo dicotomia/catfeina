@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Adopción de Gatos | Catfeina</title>
+    <link rel="preload" href="/recursos/fuentes/Waterlily.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/recursos/css/estilos-globales.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="/recursos/js/tema-tailwind.js"></script>
+
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Estilo para botón de filtro activo */
+        .filtro-btn.activo {
+            background-color: #EAB308;
+            color: #181511;
+            font-weight: 800;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-fondo-claro dark:bg-fondo-oscuro text-texto-principal dark:text-white transition-colors duration-200 font-display pb-24 md:pb-0">
+    <div class="relative flex min-h-screen flex-col overflow-x-hidden">
+        <div id="nav-placeholder"></div>
+
+        <main class="flex flex-1 flex-col items-center w-full">
+
+            <!-- Cabecera de la sección de gatos -->
+            <header class="w-full bg-[#fdfaf7] dark:bg-[#150f0a] pt-16 pb-6 px-4 relative overflow-hidden text-center">
+                <!-- Imagen de fondo decorativa -->
+                <div class="absolute inset-0 opacity-20 pointer-events-none grayscale">
+                    <img src="/recursos/imagenes/cabecera-gatos.webp" class="w-full h-full object-cover">
+                </div>
+
+                <div class="max-w-4xl mx-auto relative z-10 flex flex-col gap-2">
+                    <h1 class="font-waterlily text-5xl md:text-7xl text-principal leading-none tracking-normal">
+                        Conoce a los <span class="text-[#181511] dark:text-white italic">Michis</span>
+                    </h1>
+                    <p class="text-sm md:text-base text-texto-secundario dark:text-gray-400 font-medium max-w-xl mx-auto leading-relaxed">
+                        Conoce a los gatos rescatados que viven en Catfeina y esperan encontrar su hogar definitivo.
+                    </p>
+                </div>
+            </header>
+
+
+            <div class="w-full bg-white dark:bg-[#1f1b16] border-b border-fondo-claro dark:border-[#374151]">
+                <div
+                    class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div class="w-full bg-white dark:bg-[#1f1b16] border-b border-gray-100 dark:border-white/10 p-4">
+                        <div class="max-w-7xl mx-auto flex flex-wrap gap-4 items-center justify-center">
+
+                            <div class="flex flex-col gap-1">
+                                <label class="text-[10px] uppercase font-bold text-gray-400 ml-1">Género</label>
+                                <select id="filtro-genero"
+                                    class="bg-fondo-claro dark:bg-[#2c241b] border-none rounded-xl text-sm focus:ring-2 focus:ring-principal">
+                                    <option value="todos">Cualquiera</option>
+                                    <option value="Macho">Macho</option>
+                                    <option value="Hembra">Hembra</option>
+                                </select>
+                            </div>
+
+                            <div class="flex flex-col gap-1">
+                                <label class="text-[10px] uppercase font-bold text-gray-400 ml-1">Estado</label>
+                                <select id="filtro-estado"
+                                    class="bg-fondo-claro dark:bg-[#2c241b] border-none rounded-xl text-sm focus:ring-2 focus:ring-principal">
+                                    <option value="todos">Cualquiera</option>
+                                    <option value="En Adopción">En Adopción</option>
+                                    <option value="Reservado">Reservados</option>
+                                    <option value="Urgente">Urgentes</option>
+                                    <option value="Residente VIP">Residentes VIP</option>
+                                </select>
+                            </div>
+
+                            <button id="btn-limpiar" class="mt-5 text-gray-400 hover:text-red-500 transition-colors">
+                                <span class="material-symbols-outlined">restart_alt</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full max-w-7xl mx-auto px-4 py-12">
+                <div id="lista-gatos-completa"
+                    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                </div>
+            </div>
+
+            <!-- Listado de gatos adoptados con éxito -->
+            <section class="w-full bg-white dark:bg-[#1a120b] py-20 border-t border-gray-100 dark:border-white/5">
+                <div class="max-w-7xl mx-auto px-4 sm:px-10">
+                    <div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-12">
+                        <div class="max-w-xl">
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 font-black text-[8px] uppercase tracking-[0.2em] mb-4">
+                                <span class="material-symbols-outlined text-xs">celebration</span>
+                                Misión Cumplida
+                            </div>
+                            <h2 class="text-3xl md:text-5xl font-black text-texto-principal dark:text-white leading-tight tracking-tight">
+                                Finales <span class="text-principal italic">Felices</span>
+                            </h2>
+                            <p class="text-texto-secundario dark:text-gray-400 text-sm mt-4 font-medium">
+                                Estos son los michis que ya están disfrutando de su sofá definitivo. ¡Gracias a todos los que hicisteis esto posible!
+                            </p>
+                        </div>
+                    </div>
+
+                    <div id="lista-finales-felices" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <!-- Contenido generado dinámicamente -->
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <div id="footer-placeholder"></div>
+        <script src="/components/loader.js"></script>
+        <script src="/gatos/gatos.js" type="module"></script>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Tienda Solidaria | Catfeina</title>
+    <link rel="preload" href="/recursos/fuentes/Waterlily.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/recursos/css/estilos-globales.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Noto+Sans:wght@400;500;700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <script src="/recursos/js/tema-tailwind.js"></script>
+
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-fondo-claro dark:bg-fondo-oscuro text-texto-principal dark:text-white transition-colors duration-200 font-display">
+
+    <div id="nav-placeholder"></div>
+
+    <!-- Contenedor para notificaciones flotantes -->
+    <div id="toast-container" class="fixed top-24 right-8 z-[200] flex flex-col gap-3 pointer-events-none"></div>
+
+    <div class="flex flex-col min-h-screen">
+
+        <!-- Cabecera de la sección de tienda -->
+        <header class="w-full bg-[#fdfaf7] dark:bg-[#150f0a] pt-24 pb-6 px-4 relative overflow-hidden text-center">
+            <!-- Imagen de fondo decorativa -->
+            <div class="absolute inset-0 opacity-20 pointer-events-none grayscale">
+                <img src="/recursos/imagenes/cabecera-tienda.webp" class="w-full h-full object-cover">
+            </div>
+
+            <div class="absolute -top-24 -left-20 w-64 h-64 bg-principal/5 rounded-full blur-3xl"></div>
+            <div class="absolute -bottom-24 -right-20 w-80 h-80 bg-principal/5 rounded-full blur-3xl"></div>
+
+            <div class="max-w-4xl mx-auto relative z-10 flex flex-col gap-2">
+                <h1 class="font-waterlily text-5xl md:text-7xl text-principal leading-none tracking-normal">
+                    Tienda <span class="text-[#181511] dark:text-white italic">Artesana y Solidaria</span>
+                </h1>
+                <p
+                    class="text-sm md:text-base text-texto-secundario dark:text-gray-400 font-medium max-w-xl mx-auto leading-relaxed">
+                    Cada objeto ha sido creado por manos voluntarias en nuestros talleres creativos. 100% solidario.
+                </p>
+            </div>
+        </header>
+
+        <div
+            class="sticky top-0 z-30 bg-fondo-claro/80 dark:bg-fondo-oscuro/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 w-full">
+            <div
+                class="max-w-[1440px] mx-auto px-4 lg:px-10 py-4 flex flex-col md:flex-row gap-4 items-center justify-between">
+
+                <!-- Sello de garantía de artesanía -->
+                <div class="flex items-center gap-3 py-1 px-2 border-l-2 border-principal/30 group">
+                    <div class="flex items-center justify-center w-7 h-7 rounded-full bg-principal/5 text-principal">
+                        <span class="material-symbols-outlined text-base">front_hand</span>
+                    </div>
+                    <div class="flex flex-col leading-none">
+                        <span class="text-[12px] font-black uppercase tracking-[0.3em] text-principal">Hecho a
+                            Mano</span>
+                        <div class="flex items-center gap-1.5 mt-0.5">
+                            <span
+                                class="text-[10px] font-bold text-texto-secundario dark:text-gray-400 uppercase tracking-widest">Garantía
+                                Solidaria</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Buscador de artículos -->
+                <div class="relative w-full md:w-72 group">
+                    <input type="text" id="input-busqueda-tienda" placeholder="Buscar producto..."
+                        class="w-full px-6 py-2.5 rounded-2xl border-none bg-white dark:bg-[#2c241b] shadow-sm ring-1 ring-gray-200 dark:ring-gray-800 focus:ring-2 focus:ring-principal transition-all outline-none text-sm">
+                </div>
+            </div>
+        </div>
+
+        <main class="flex-1 w-full max-w-[1440px] mx-auto px-4 lg:px-10 py-8 lg:py-12">
+            <div class="flex justify-between items-end mb-8 px-2">
+                <div>
+                    <h2
+                        class="text-texto-principal dark:text-white text-2xl lg:text-3xl font-bold leading-tight tracking-[-0.02em]">
+                        Nuestros Productos Solidarios</h2>
+                    <p class="text-texto-secundario dark:text-gray-400 text-sm mt-2">100% de los beneficios destinados
+                        al cuidado de los gatos.</p>
+                </div>
+            </div>
+
+            <div id="contenedor-productos"
+                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
+                <!-- Listado generado dinámicamente -->
+            </div>
+        </main>
+
+        <div class="bg-[#f4f3f0] dark:bg-[#221a10] py-12 border-t border-gray-200 dark:border-gray-800">
+            <div class="max-w-[1440px] mx-auto px-4 lg:px-10">
+                <div
+                    class="flex flex-col md:flex-row items-center justify-between gap-8 bg-principal rounded-[2rem] p-8 md:p-12 relative overflow-hidden">
+                    <div class="absolute -top-20 -left-20 w-64 h-64 bg-white/10 rounded-full"></div>
+                    <div class="absolute -bottom-32 -right-20 w-80 h-80 bg-black/5 rounded-full"></div>
+
+                    <div class="z-10 text-center md:text-left">
+                        <h2 class="text-texto-principal text-3xl font-black mb-2">Gracias por tu apoyo</h2>
+                        <p class="text-texto-principal/80 font-medium max-w-lg">Este mes, gracias a vuestras compras,
+                            hemos financiado:</p>
+                    </div>
+                    <div class="z-10 flex flex-wrap justify-center gap-4 md:gap-8">
+                        <div
+                            class="flex flex-col items-center bg-white/20 backdrop-blur-sm p-4 rounded-2xl min-w-[120px]">
+                            <span class="text-texto-principal text-3xl font-black">150+</span>
+                            <span class="text-texto-principal text-sm font-bold">Comidas</span>
+                        </div>
+                        <div
+                            class="flex flex-col items-center bg-white/20 backdrop-blur-sm p-4 rounded-2xl min-w-[120px]">
+                            <span class="text-texto-principal text-3xl font-black">12</span>
+                            <span class="text-texto-principal text-sm font-bold">Vacunas</span>
+                        </div>
+                        <div
+                            class="flex flex-col items-center bg-white/20 backdrop-blur-sm p-4 rounded-2xl min-w-[120px]">
+                            <span class="text-texto-principal text-3xl font-black">5</span>
+                            <span class="text-texto-principal text-sm font-bold">Esterilizaciones</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="footer-placeholder"></div>
+
+        <script src="/components/loader.js"></script>
+        <script src="/tienda/tienda.js" type="module"></script>
+    </div>
+</body>
+
+</html>

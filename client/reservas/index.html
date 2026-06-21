@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Reservar Experiencia | Catfeina</title>
+    <link rel="stylesheet" href="/recursos/css/estilos-globales.css">
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="/recursos/js/tema-tailwind.js"></script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+
+<body class="bg-fondo-claro dark:bg-fondo-oscuro font-display text-texto-principal dark:text-gray-100 min-h-screen flex flex-col">
+
+    <div id="nav-placeholder"></div>
+
+    <main class="flex-grow flex justify-center pt-32 pb-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <!-- Elementos decorativos de fondo -->
+        <div class="absolute -top-24 -left-24 w-96 h-96 bg-principal/10 rounded-full blur-[100px] pointer-events-none"></div>
+        <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-principal/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-5xl w-full space-y-10 relative z-10">
+            
+            <div class="text-center space-y-3">
+                <h1 class="text-4xl md:text-6xl font-black tracking-tight text-texto-principal dark:text-white leading-[1.1]">
+                    ¿Qué <span class="text-principal italic">experiencia</span> buscas hoy?
+                </h1>
+                <p class="text-texto-secundario dark:text-gray-400 text-lg max-w-xl mx-auto font-medium">
+                    Elige el espacio que mejor se adapte a tu plan. Recuerda que ambos requieren reserva previa.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+                
+                <!-- Reserva para zona de cafetería -->
+                <div class="group relative bg-white dark:bg-[#1f1b16] rounded-[3rem] p-8 md:p-10 shadow-xl border border-gray-100 dark:border-white/5 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 flex flex-col items-center text-center space-y-6 overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-b from-principal/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    
+                    <div class="relative w-20 h-20 rounded-[2rem] bg-principal text-texto-principal flex items-center justify-center shadow-lg shadow-principal/30 group-hover:rotate-6 transition-transform duration-500">
+                        <span class="material-symbols-outlined text-4xl">coffee</span>
+                    </div>
+                    
+                    <div class="relative space-y-2">
+                        <h2 class="text-2xl font-black text-texto-principal dark:text-white uppercase tracking-wider">Zona Cafetería</h2>
+                        <p class="text-sm text-texto-secundario dark:text-gray-400 leading-relaxed">Relájate con pastelería artesana y la compañía de nuestros gatos en un ambiente acogedor.</p>
+                    </div>
+
+                    <ul class="relative w-full space-y-3 text-left bg-gray-50 dark:bg-black/20 p-6 rounded-[2rem]">
+                        <li class="flex items-center gap-3 text-xs font-bold text-texto-principal dark:text-gray-300">
+                            <span class="material-symbols-outlined text-principal text-lg">check_circle</span>
+                            Acceso zona común felina
+                        </li>
+                        <li class="flex items-center gap-3 text-xs font-bold text-texto-principal dark:text-gray-300">
+                            <span class="material-symbols-outlined text-principal text-lg">check_circle</span>
+                            Sofás y mesas bajas relax
+                        </li>
+                        <li class="flex items-center gap-3 text-xs font-bold text-texto-principal dark:text-gray-300">
+                            <span class="material-symbols-outlined text-principal text-lg">check_circle</span>
+                            Carta completa de especialidad
+                        </li>
+                    </ul>
+
+                    <div class="relative w-full pt-2">
+                        <a href="/reservas/formulario.html?tipo=cafeteria" class="block w-full py-4 bg-principal hover:bg-principal/90 text-texto-principal font-black rounded-2xl transition-all shadow-xl shadow-principal/30 uppercase tracking-widest text-xs">
+                            RESERVAR MESA
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Reserva para zona de coworking -->
+                <div class="group relative bg-white dark:bg-[#1f1b16] rounded-[3rem] p-8 md:p-10 shadow-xl border border-gray-100 dark:border-white/5 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 flex flex-col items-center text-center space-y-6 overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-b from-principal/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    
+                    <div class="relative w-20 h-20 rounded-[2rem] bg-principal text-texto-principal flex items-center justify-center shadow-lg shadow-principal/30 group-hover:-rotate-6 transition-transform duration-500">
+                        <span class="material-symbols-outlined text-4xl">laptop_mac</span>
+                    </div>
+                    
+                    <div class="relative space-y-2">
+                        <h2 class="text-2xl font-black text-texto-principal dark:text-white uppercase tracking-wider">Zona Coworking</h2>
+                        <p class="text-sm text-texto-secundario dark:text-gray-400 leading-relaxed">Máxima productividad en un ambiente de silencio absoluto rodeado de ronroneos.</p>
+                    </div>
+
+                    <ul class="relative w-full space-y-3 text-left bg-gray-50 dark:bg-black/20 p-6 rounded-[2rem]">
+                        <li class="flex items-center gap-3 text-xs font-bold text-texto-principal dark:text-gray-300">
+                            <span class="material-symbols-outlined text-principal text-lg">check_circle</span>
+                            Escritorio individual ergonómico
+                        </li>
+                        <li class="flex items-center gap-3 text-xs font-bold text-texto-principal dark:text-gray-300">
+                            <span class="material-symbols-outlined text-principal text-lg">check_circle</span>
+                            Wi-Fi 600Mb y café ilimitado
+                        </li>
+                        <li class="flex items-center gap-3 text-xs font-bold text-texto-principal dark:text-gray-300">
+                            <span class="material-symbols-outlined text-principal text-lg">check_circle</span>
+                            Ambiente libre de ruidos
+                        </li>
+                    </ul>
+
+                    <div class="relative w-full pt-2">
+                        <a href="/reservas/formulario.html?tipo=coworking" class="block w-full py-4 bg-principal hover:bg-principal/90 text-texto-principal font-black rounded-2xl transition-all shadow-xl shadow-principal/30 uppercase tracking-widest text-xs">
+                            RESERVAR ESCRITORIO
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="flex items-center justify-center gap-4 text-xs font-bold text-texto-secundario dark:text-gray-500 bg-white/50 dark:bg-black/10 w-fit mx-auto px-6 py-3 rounded-full backdrop-blur-sm">
+                <span class="material-symbols-outlined text-sm text-principal">info</span>
+                Turnos de 30 min en cafetería · Pases flexibles en coworking
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+    <script src="/components/loader.js"></script>
+</body>
+
+</html>

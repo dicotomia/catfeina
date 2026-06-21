@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Catfeina | Café & Gatos - Inicio</title>
+    <link rel="icon" type="image/svg+xml" href="/recursos/imagenes/logo-flavicon.svg">
+    <link rel="preload" href="/recursos/fuentes/Waterlily.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/recursos/css/estilos-globales.css">
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        window.addEventListener('error', function (e) {
+            if (e.target.tagName === 'SCRIPT') {
+                console.error("Fallo al cargar script:", e.target.src);
+            }
+        }, true);
+    </script>
+
+    <script src="/recursos/js/tema-tailwind.js"></script>
+
+
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .sin-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .sin-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Ciclo de animación principal */
+        @keyframes secuenciaHero {
+
+            0%,
+            15% {
+                opacity: 0;
+            }
+
+            25%,
+            85% {
+                opacity: 1;
+            }
+
+            95%,
+            100% {
+                opacity: 0;
+            }
+        }
+
+        @keyframes aparecerTexto {
+
+            0%,
+            35% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            50%,
+            85% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            95%,
+            100% {
+                opacity: 0;
+            }
+        }
+
+        /* Simulación de escritura */
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 100%;
+            }
+        }
+
+        .typing-container {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            width: 0;
+            animation: typing 2.5s steps(9, end) forwards;
+            animation-delay: 2s;
+        }
+
+        /* Bucle de revelación de título */
+        @keyframes typewriterLoop {
+
+            0%,
+            15% {
+                width: 0;
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 1;
+            }
+
+            25%,
+            85% {
+                width: 100%;
+                opacity: 1;
+            }
+
+            95%,
+            100% {
+                width: 0;
+                opacity: 0;
+            }
+        }
+
+        .anim-titulo-typing {
+            overflow: hidden;
+            white-space: nowrap;
+            margin: 0 auto;
+            text-align: center;
+            animation: typewriterLoop 10s linear infinite;
+        }
+
+        .capa-filtro {
+            animation: secuenciaHero 10s infinite;
+        }
+
+        .anim-descripcion {
+            animation: aparecerTexto 10s infinite;
+        }
+
+        /* Entrada suave de elementos modales */
+        @keyframes fadeInUpModal {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-joy { animation: fadeInUpModal 0.4s ease-out forwards; }
+    </style>
+</head>
+
+<body
+    class="bg-fondo-claro dark:bg-fondo-oscuro font-display antialiased text-texto-principal dark:text-gray-100 overflow-x-hidden">
+
+    <div id="nav-placeholder"></div>
+
+    <main>
+
+        <!-- Cabecera principal con vídeo y animación -->
+        <header
+            class="w-full bg-[#fdfaf7] dark:bg-[#150f0a] pt-32 pb-24 px-4 relative overflow-hidden min-h-[85vh] flex items-center justify-center text-white">
+            <!-- Capa de vídeo de fondo -->
+            <video autoplay muted loop playsinline poster="/recursos/imagenes/cabecera-inicio.jpg"
+                class="absolute inset-0 w-full h-full object-cover z-0">
+                <source src="/recursos/videos/gato-negro.mp4" type="video/mp4">
+            </video>
+
+            <!-- Filtro visual dinámico -->
+            <div class="absolute inset-0 bg-black/50 z-[1] capa-filtro"></div>
+
+            <!-- Capa de contenidos textuales -->
+            <div class="w-full text-center relative z-10 overflow-hidden flex flex-col items-center gap-6 px-6">
+                <div class="inline-block">
+                    <h1
+                        class="font-waterlily text-6xl md:text-[10rem] lg:text-[12rem] text-white anim-titulo-typing leading-none select-none pointer-events-none drop-shadow-2xl">
+                        Catfeina
+                    </h1>
+                </div>
+                <p
+                    class="text-base md:text-lg lg:text-xl text-white font-medium max-w-2xl mx-auto leading-relaxed italic tracking-wide anim-descripcion">
+                    "Más que un cat café, somos un refugio donde los buenos momentos y el amor por los gatos se
+                    encuentran."
+                </p>
+            </div>
+        </header>
+
+        <!-- Secciones de pilares de impacto y servicios -->
+        <section
+            class="py-12 bg-white dark:bg-[#1a120b] border-y border-gray-100 dark:border-gray-800 relative overflow-hidden">
+            <div
+                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[300px] bg-principal/5 rounded-full blur-[120px] pointer-events-none">
+            </div>
+
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="flex flex-col items-center text-center gap-4 group">
+                        <div
+                            class="w-16 h-16 bg-principal/10 text-principal rounded-[1.25rem] flex items-center justify-center transition-transform group-hover:scale-110 group-hover:rotate-3 shadow-inner">
+                            <span class="material-symbols-outlined text-3xl">coffee</span>
+                        </div>
+                        <div>
+                            <h3 class="font-black text-[10px] uppercase tracking-[0.2em] mb-1.5 text-principal">
+                                Cafetería</h3>
+                            <p class="text-xs text-texto-secundario dark:text-gray-400 leading-relaxed">Especialidad y
+                                postres artesanales.</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center text-center gap-4 group">
+                        <div
+                            class="w-16 h-16 bg-principal/10 text-principal rounded-[1.25rem] flex items-center justify-center transition-transform group-hover:scale-110 group-hover:-rotate-3 shadow-inner">
+                            <span class="material-symbols-outlined text-3xl">volunteer_activism</span>
+                        </div>
+                        <div>
+                            <h3 class="font-black text-[10px] uppercase tracking-[0.2em] mb-1.5 text-principal">Adopción
+                            </h3>
+                            <p class="text-xs text-texto-secundario dark:text-gray-400 leading-relaxed">Comprometidos
+                                con el hogar perfecto.</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center text-center gap-4 group">
+                        <div
+                            class="w-16 h-16 bg-principal/10 text-principal rounded-[1.25rem] flex items-center justify-center transition-transform group-hover:scale-110 group-hover:rotate-3 shadow-inner">
+                            <span class="material-symbols-outlined text-3xl">laptop_mac</span>
+                        </div>
+                        <div>
+                            <h3 class="font-black text-[10px] uppercase tracking-[0.2em] mb-1.5 text-principal">
+                                Coworking</h3>
+                            <p class="text-xs text-texto-secundario dark:text-gray-400 leading-relaxed">Calma rodeada de
+                                ronroneos.</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center text-center gap-4 group">
+                        <div
+                            class="w-16 h-16 bg-principal/10 text-principal rounded-[1.25rem] flex items-center justify-center transition-transform group-hover:scale-110 group-hover:-rotate-3 shadow-inner">
+                            <span class="material-symbols-outlined text-3xl">favorite</span>
+                        </div>
+                        <div>
+                            <h3 class="font-black text-[10px] uppercase tracking-[0.2em] mb-1.5 text-principal">
+                                Apadrinamiento</h3>
+                            <p class="text-xs text-texto-secundario dark:text-gray-400 leading-relaxed">Ayuda a mantener
+                                su felicidad.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bloque informativo sobre reserva obligatoria -->
+        <section class="py-12 bg-fondo-claro dark:bg-fondo-oscuro relative overflow-hidden">
+            <div class="absolute -top-12 -left-12 w-48 h-48 bg-principal/5 rounded-full blur-[80px]"></div>
+
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div
+                    class="bg-white dark:bg-[#1f1b16] rounded-[2.5rem] p-6 md:p-10 shadow-xl border border-principal/10 flex flex-col lg:flex-row items-center gap-8 md:gap-12">
+                    <div class="flex-1 space-y-4 text-center lg:text-left">
+                        <div
+                            class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-principal/10 text-principal font-black text-[8px] uppercase tracking-[0.2em]">
+                            <span class="material-symbols-outlined text-xs">info</span>
+                            Visita Responsable
+                        </div>
+
+                        <h2 class="text-2xl md:text-3xl font-black text-texto-principal dark:text-white leading-tight">
+                            Es obligatorio <span class="text-principal italic">reservar</span> para acudir
+                        </h2>
+
+                        <p
+                            class="text-texto-secundario dark:text-gray-400 text-sm leading-relaxed max-w-md font-medium">
+                            Controlamos el aforo rigurosamente para garantizar la tranquilidad de nuestros gatos. Tu
+                            reserva ayuda a mantener su oasis de paz.
+                        </p>
+
+                        <div class="grid grid-cols-3 gap-4 pt-2">
+                            <div class="flex flex-col items-center lg:items-start gap-1">
+                                <div
+                                    class="w-10 h-10 rounded-lg bg-principal/10 text-principal flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-xl">groups</span>
+                                </div>
+                                <h4
+                                    class="font-black text-[9px] uppercase tracking-wider text-texto-principal dark:text-white">
+                                    Aforo 10</h4>
+                            </div>
+
+                            <div class="flex flex-col items-center lg:items-start gap-1">
+                                <div
+                                    class="w-10 h-10 rounded-lg bg-principal/10 text-principal flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-xl">volume_off</span>
+                                </div>
+                                <h4
+                                    class="font-black text-[9px] uppercase tracking-wider text-texto-principal dark:text-white">
+                                    Silencio</h4>
+                            </div>
+
+                            <div class="flex flex-col items-center lg:items-start gap-1">
+                                <div
+                                    class="w-10 h-10 rounded-lg bg-principal/10 text-principal flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-xl">favorite</span>
+                                </div>
+                                <h4
+                                    class="font-black text-[9px] uppercase tracking-wider text-texto-principal dark:text-white">
+                                    Bienestar</h4>
+                            </div>
+                        </div>
+
+                        <div class="pt-4">
+                            <a href="/reservas/"
+                                class="inline-flex items-center gap-3 bg-principal hover:bg-principal/90 text-texto-principal px-8 py-3.5 rounded-2xl font-black text-sm transition-all hover:scale-105 shadow-lg shadow-principal/20 group">
+                                RESERVAR VISITA
+                                <span
+                                    class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="flex-shrink-0 w-full max-w-[280px] lg:max-w-[320px]">
+                        <div class="relative rounded-[2rem] overflow-hidden aspect-square shadow-xl group">
+                            <img src="/recursos/imagenes/gato-mesa.webp" alt="Gato descansando tranquilamente"
+                                loading="lazy"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent">
+                            </div>
+                            <div class="absolute bottom-4 left-6 right-6 text-white">
+                                <p class="text-xs font-medium italic opacity-90 leading-relaxed">"Ellos son los dueños, nosotros solo sus visitantes."</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+                        <!-- Invitación a conocer la historia del centro -->
+                        <section class="py-24 bg-white dark:bg-[#1a120b] border-y border-gray-100 dark:border-gray-800 relative overflow-hidden text-center">
+                            <!-- Decoración de fondo sutil -->
+                            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-principal/5 rounded-full blur-[120px] pointer-events-none"></div>
+                
+                            <div class="max-w-4xl mx-auto px-4 relative z-10">
+                                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-principal/10 text-principal font-black text-[8px] uppercase tracking-[0.2em] mb-6">
+                                    <span class="material-symbols-outlined text-xs">auto_awesome</span>
+                                    Nuestra Esencia
+                                </div>
+                                <h2 class="text-3xl md:text-5xl font-black text-texto-principal dark:text-white mb-8 tracking-tighter leading-tight">
+                                    ¿Quieres conocer el alma de <span class="text-principal italic">Catfeina</span>?
+                                </h2>
+                                <a href="/quienes-somos/"
+                                    class="group inline-flex items-center gap-3 text-xs font-black uppercase tracking-[0.3em] text-texto-principal dark:text-white hover:text-principal transition-all">
+                                    DESCUBRIR NUESTRA HISTORIA
+                                    <span class="material-symbols-outlined group-hover:translate-x-2 transition-transform">arrow_forward</span>
+                                </a>
+                            </div>
+                        </section>
+
+        <!-- Galería destacada de residentes -->
+        <section class="py-16 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div
+                class="absolute -bottom-24 -right-24 w-80 h-80 bg-principal/10 rounded-full blur-[100px] pointer-events-none">
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-between items-end gap-4 mb-10 text-center md:text-left">
+                <div class="max-w-xl">
+                    <h2
+                        class="text-3xl md:text-5xl font-black text-texto-principal dark:text-white leading-[1.1] tracking-tight">
+                        Conoce a nuestros <span class="text-principal italic">inquilinos</span>
+                    </h2>
+                </div>
+
+                <a href="/gatos/"
+                    class="hidden sm:flex items-center gap-2 bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 px-6 py-2.5 rounded-xl text-texto-principal dark:text-white font-black text-sm hover:bg-principal hover:border-principal hover:text-texto-principal transition-all shadow-sm">
+                    VER TODOS
+                    <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                </a>
+            </div>
+
+            <div id="lista-gatos-home" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-6">
+                <p class="col-span-full text-gray-500 italic p-4 text-center">Cargando mininos...</p>
+            </div>
+            <a href="/gatos/"
+                class="sm:hidden flex items-center justify-center gap-2 bg-principal text-texto-principal py-3 rounded-xl font-black text-sm mt-2 shadow-lg">
+                VER TODOS LOS GATOS
+                <span class="material-symbols-outlined text-lg">arrow_forward</span>
+            </a>
+        </section>
+
+        <!-- Carrusel de testimonios de usuarios -->
+        <section class="py-16 bg-principal/5 dark:bg-principal/10 relative overflow-hidden">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="flex flex-col md:flex-row justify-between items-center md:items-end gap-6 mb-12 text-center md:text-left">
+                    <div>
+                        <h2 class="text-3xl md:text-5xl font-black text-texto-principal dark:text-white leading-[1.1] tracking-tight">
+                            Lo que dicen <span class="text-principal italic">nuestros visitantes</span>
+                        </h2>
+                    </div>
+                    <button data-action="open-testimonial-modal" class="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-principal/30 text-texto-secundario dark:text-gray-400 font-bold text-[10px] uppercase tracking-widest hover:bg-principal hover:text-texto-principal transition-all shadow-sm bg-white/50 dark:bg-white/5 group">
+                        <span class="material-symbols-outlined text-lg group-hover:rotate-12 transition-transform">add_comment</span>
+                        Contar experiencia
+                    </button>
+                </div>
+
+                <div class="relative group">
+                    <!-- Controles de navegación del carrusel -->
+                    <button data-action="slide-testimonios-prev" class="absolute -left-4 md:-left-12 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white dark:bg-[#1f1810] shadow-xl border border-gray-100 dark:border-white/5 text-principal opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center hover:scale-110 active:scale-95">
+                        <span class="material-symbols-outlined">chevron_left</span>
+                    </button>
+                    <button data-action="slide-testimonios-next" class="absolute -right-4 md:-right-12 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white dark:bg-[#1f1810] shadow-xl border border-gray-100 dark:border-white/5 text-principal opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center hover:scale-110 active:scale-95">
+                        <span class="material-symbols-outlined">chevron_right</span>
+                    </button>
+
+                    <div class="overflow-hidden">
+                        <div id="contenedor-comentarios" class="flex transition-transform duration-500 ease-in-out gap-8">
+                            <!-- Contenido generado dinámicamente -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        </div>
+    </main>
+
+    <!-- Modal para añadir nuevos testimonios -->
+    <div id="modal-comentario" class="fixed inset-0 z-[999] hidden items-center justify-center p-4 bg-black/60 backdrop-blur-md">
+        <div class="bg-white dark:bg-[#1f1b16] rounded-[2.5rem] w-full max-w-lg p-8 md:p-12 shadow-2xl relative animate-joy">
+            <button data-action="close-testimonial-modal" class="absolute top-6 right-6 text-gray-400 hover:text-texto-principal transition-colors">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+            
+            <div class="text-center mb-8">
+                <div class="w-16 h-16 bg-principal/20 text-principal rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <span class="material-symbols-outlined text-3xl">rate_review</span>
+                </div>
+                <h3 class="text-2xl font-black text-texto-principal dark:text-white uppercase tracking-tighter">Tu Opinión <span class="text-principal italic">Importa</span></h3>
+                <p class="text-texto-secundario dark:text-gray-400 text-xs font-medium mt-2">Ayuda a otros humanos a conocer la magia de Catfeina.</p>
+            </div>
+
+            <form id="form-nuevo-comentario" class="space-y-6" novalidate>
+                <div>
+                    <label class="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-2 mb-2 block">Puntuación</label>
+                    <div class="flex justify-center gap-2" id="selector-estrellas">
+                        <button type="button" data-rating="1" class="star-btn text-gray-300 hover:text-principal transition-colors"><span class="material-symbols-outlined text-3xl">star</span></button>
+                        <button type="button" data-rating="2" class="star-btn text-gray-300 hover:text-principal transition-colors"><span class="material-symbols-outlined text-3xl">star</span></button>
+                        <button type="button" data-rating="3" class="star-btn text-gray-300 hover:text-principal transition-colors"><span class="material-symbols-outlined text-3xl">star</span></button>
+                        <button type="button" data-rating="4" class="star-btn text-gray-300 hover:text-principal transition-colors"><span class="material-symbols-outlined text-3xl">star</span></button>
+                        <button type="button" data-rating="5" class="star-btn text-gray-300 hover:text-principal transition-colors"><span class="material-symbols-outlined text-3xl">star</span></button>
+                    </div>
+                    <input type="hidden" name="puntuacion" id="input-rating" value="5">
+                </div>
+
+                <div>
+                    <label class="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-2 mb-2 block">Tu Mensaje</label>
+                    <textarea name="texto" required placeholder="¿Cómo fue tu visita? ¿Qué gato te enamoró?..." rows="4"></textarea>
+                </div>
+
+                <button type="submit" class="w-full py-4 bg-principal text-texto-principal font-black rounded-2xl shadow-xl shadow-principal/20 hover:scale-[1.02] transition-all uppercase tracking-widest text-xs">
+                    ENVIAR COMENTARIO
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="/components/loader.js"></script>
+    <script src="/index.js" type="module"></script>
+</body>
+
+
+</html>

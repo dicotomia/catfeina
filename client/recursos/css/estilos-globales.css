@@ -1,0 +1,116 @@
+/**
+ * Definición de estilos globales y normalización de la interfaz.
+ */
+
+/* Tipografías corporativas */
+@font-face {
+    font-family: 'Waterlily';
+    src: url('../fuentes/Waterlily.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Variables de identidad visual */
+:root {
+    --color-principal: #f4d03f;
+    --color-fondo-claro: #fdfaf7;
+    --color-fondo-oscuro: #150f0a;
+}
+
+/* Estructura base y comportamiento de scroll */
+html {
+    scrollbar-gutter: stable;
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+main {
+    animation: fadeInMain 0.6s ease-out forwards;
+    padding-top: 80px; 
+}
+
+@keyframes fadeInMain {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Normalización de elementos de formulario */
+
+label {
+    display: block !important;
+    font-size: 0.7rem !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    color: #9ca3af !important;
+    margin-bottom: 0.5rem !important;
+    margin-left: 0.25rem !important;
+}
+
+input[type="text"], 
+input[type="email"], 
+input[type="password"],
+input[type="date"],
+input[type="time"],
+input[type="number"],
+input[type="tel"],
+select, 
+textarea {
+    display: block !important;
+    width: 100% !important;
+    padding: 0.85rem 1.25rem !important;
+    font-family: inherit !important;
+    font-size: 0.9rem !important;
+    line-height: 1.5 !important;
+    color: #1f2937 !important;
+    background-color: #ffffff !important;
+    border: 2px solid #f3f4f6 !important;
+    border-radius: 1rem !important;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+    transition: all 0.2s ease-in-out !important;
+    outline: none !important;
+    box-sizing: border-box !important;
+    appearance: none !important;
+}
+
+textarea {
+    min-height: 120px !important;
+    resize: vertical !important;
+}
+
+select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239ca3af'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 1rem center !important;
+    background-size: 1.2em !important;
+    padding-right: 2.5rem !important;
+}
+
+/* Estados de interacción */
+input:focus, select:focus, textarea:focus {
+    border-color: var(--color-principal) !important;
+    box-shadow: 0 0 0 4px rgba(244, 208, 63, 0.15) !important;
+    background-color: #ffffff !important;
+}
+
+/* Adaptación a modo oscuro */
+.dark input, .dark select, .dark textarea {
+    background-color: #1a1612 !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    color: #f3f4f6 !important;
+}
+
+.dark input:focus, .dark select:focus, .dark textarea:focus {
+    background-color: #111111 !important;
+}
+
+/* Clases de utilidad */
+.font-waterlily { font-family: 'Waterlily', cursive; }
+.sin-scrollbar::-webkit-scrollbar { display: none; }
+#nav-placeholder { position: fixed; top: 0; left: 0; width: 100%; z-index: 9999; }

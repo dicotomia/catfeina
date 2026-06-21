@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Mi Panel - Catfeina</title>
+    <link rel="icon" type="image/svg+xml" href="/recursos/imagenes/logo-flavicon.svg">
+    
+    <link rel="stylesheet" href="/recursos/css/estilos-globales.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="/recursos/js/tema-tailwind.js"></script>
+
+    <style>
+        .seccion-panel { display: none; opacity: 0; }
+        .seccion-panel.activa { display: block; opacity: 1; }
+        .btn-sidebar.active { color: #181511; font-weight: 800; border-right: 4px solid #f4d03f; background: linear-gradient(to left, #fffcf0, transparent); }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-joy { animation: fadeInUp 0.4s ease-out forwards; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body id="contenedor-miembro" class="bg-white text-texto-principal font-display antialiased text-sm opacity-0 transition-opacity duration-500">
+    
+    <header class="w-full bg-white pt-20 pb-2 px-8">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
+            <div class="flex flex-col animate-joy">
+                <p class="text-[9px] font-black uppercase tracking-[0.3em] text-principal">Socio de Catfeina</p>
+                <h1 class="text-3xl font-black tracking-tighter" id="bienvenida-nombre">Hola...</h1>
+            </div>
+            <div class="flex gap-2">
+                <a href="/" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-50 text-[10px] font-black uppercase tracking-widest hover:bg-gray-100 transition-all border border-gray-100">Web</a>
+                <a href="/reservas" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-principal text-texto-principal text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-all shadow-lg">Reservar</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto flex flex-col md:flex-row-reverse min-h-[80vh]">
+        <aside class="w-full md:w-64 border-l border-gray-100 pt-2">
+            <nav class="sticky top-24 flex flex-col">
+                <button data-action="nav-panel" data-id="dashboard" id="btn-dashboard" class="btn-sidebar w-full flex items-center justify-between px-8 py-3 text-xs font-bold text-gray-400 hover:text-texto-principal transition-all text-right group">Dashboard <span class="material-symbols-outlined text-lg group-hover:rotate-12 transition-transform">grid_view</span></button>
+                <button data-action="nav-panel" data-id="reservas" id="btn-reservas" class="btn-sidebar w-full flex items-center justify-between px-8 py-3 text-xs font-bold text-gray-400 hover:text-texto-principal transition-all text-right group">Reservas <span class="material-symbols-outlined text-lg group-hover:rotate-12 transition-transform">event</span></button>
+                <button data-action="nav-panel" data-id="eventos" id="btn-eventos" class="btn-sidebar w-full flex items-center justify-between px-8 py-3 text-xs font-bold text-gray-400 hover:text-texto-principal transition-all text-right group">Eventos <span class="material-symbols-outlined text-lg group-hover:rotate-12 transition-transform">auto_awesome</span></button>
+                <button data-action="nav-panel" data-id="adopciones" id="btn-adopciones" class="btn-sidebar w-full flex items-center justify-between px-8 py-3 text-xs font-bold text-gray-400 hover:text-texto-principal transition-all text-right group">Mis Adopciones <span class="material-symbols-outlined text-lg group-hover:rotate-12 transition-transform">description</span></button>
+                <button data-action="nav-panel" data-id="pedidos" id="btn-pedidos" class="btn-sidebar w-full flex items-center justify-between px-8 py-3 text-xs font-bold text-gray-400 hover:text-texto-principal transition-all text-right group">Pedidos <span class="material-symbols-outlined text-lg group-hover:rotate-12 transition-transform">shopping_bag</span></button>
+                <button data-action="nav-panel" data-id="padrinazgos" id="btn-padrinazgos" class="hidden btn-sidebar w-full flex items-center justify-between px-8 py-3 text-xs font-bold text-gray-400 hover:text-texto-principal transition-all text-right group">Ahijados <span class="material-symbols-outlined text-lg group-hover:rotate-12 transition-transform">pets</span></button>
+                <button data-action="nav-panel" data-id="perfil" id="btn-perfil" class="btn-sidebar w-full flex items-center justify-between px-8 py-3 text-xs font-bold text-gray-400 hover:text-texto-principal transition-all text-right group">Mi Perfil <span class="material-symbols-outlined text-lg group-hover:rotate-12 transition-transform">settings</span></button>
+                <div class="mt-6 pt-6 border-t border-gray-50 px-8 text-right"><button data-action="cerrar-sesion" class="flex items-center justify-end gap-2 text-[10px] font-black uppercase text-red-400 hover:text-red-600 transition-all">Cerrar sesión <span class="material-symbols-outlined text-sm">logout</span></button></div>
+            </nav>
+        </aside>
+
+        <div class="flex-1 p-4 md:px-8 md:py-2">
+            <div id="pantalla-dashboard" class="seccion-panel activa animate-joy">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                    <div class="card-cat bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-100 rounded-3xl p-6 relative overflow-hidden flex flex-col items-center justify-center text-center min-h-[130px]">
+                        <span class="material-symbols-outlined absolute -right-2 -bottom-2 text-amber-200/30" style="font-size: 90px;">workspace_premium</span>
+                        <div class="relative z-10 flex flex-col items-center">
+                            <p class="text-[8px] font-black uppercase tracking-widest text-amber-600 mb-1">Estatus</p>
+                            <h2 class="text-2xl font-black text-amber-900 leading-none uppercase" id="nivel-nombre">...</h2>
+                            <div id="contenedor-incentivo-padrino" class="hidden mt-3"><a href="/apadrinar/" class="text-[8px] font-black text-amber-700 uppercase bg-white px-3 py-1.5 rounded-lg shadow-sm hover:scale-105 transition-all inline-flex items-center gap-1 border border-amber-100">Subir nivel →</a></div>
+                        </div>
+                    </div>
+                    <div class="card-cat bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100 rounded-3xl p-6 relative overflow-hidden flex flex-col items-center justify-center text-center min-h-[130px]">
+                        <span class="material-symbols-outlined absolute -right-2 -bottom-2 text-blue-200/30" style="font-size: 90px;">confirmation_number</span>
+                        <div class="relative z-10 flex flex-col items-center">
+                            <p class="text-[8px] font-black uppercase tracking-widest text-blue-600 mb-1">Próxima cita</p>
+                            <h3 class="text-2xl font-black text-blue-900 leading-none uppercase" id="reserva-fecha">Sin reservas</h3>
+                            <p class="text-[9px] font-bold text-blue-700/60 uppercase mt-1" id="reserva-servicio">¡Te esperamos!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50/30 rounded-[2rem] p-6 border border-gray-100/50"><h3 class="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400 mb-6">Actividad reciente</h3><div id="historial-actividad" class="space-y-2"></div></div>
+            </div>
+
+            <div id="pantalla-reservas" class="seccion-panel animate-joy">
+                <h2 class="text-2xl font-black mb-8 uppercase tracking-tighter">Historial de Reservas</h2>
+                <div id="contenedor-reservas-detallado" class="space-y-3"></div>
+            </div>
+
+            <div id="pantalla-eventos" class="seccion-panel animate-joy">
+                <h2 class="text-2xl font-black mb-8 uppercase tracking-tighter">Mis Eventos</h2>
+                <div id="contenedor-eventos-detallado" class="grid grid-cols-1 gap-4"></div>
+            </div>
+
+            <div id="pantalla-adopciones" class="seccion-panel animate-joy">
+                <h2 class="text-2xl font-black mb-8 uppercase tracking-tighter">Mis Adopciones</h2>
+                <div id="contenedor-adopciones-detallado" class="space-y-4"></div>
+            </div>
+
+            <div id="pantalla-pedidos" class="seccion-panel animate-joy">
+                <h2 class="text-2xl font-black mb-8 uppercase tracking-tighter">Mis Pedidos</h2>
+                <div id="contenedor-pedidos-detallado" class="space-y-4"></div>
+            </div>
+
+            <div id="pantalla-padrinazgos" class="seccion-panel animate-joy">
+                <h2 class="text-2xl font-black mb-8 uppercase tracking-tighter">Mis Ahijados</h2>
+                
+                <div id="kpis-padrinazgos" class="mb-10 max-w-sm">
+                    <div class="bg-gradient-to-br from-principal/20 to-principal/5 p-6 rounded-[2.5rem] border border-principal/20 flex items-center gap-4 shadow-sm shadow-principal/5">
+                        <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-sm"><span class="material-symbols-outlined text-principal text-3xl">auto_awesome</span></div>
+                        <div><p class="text-[10px] font-black uppercase tracking-[0.2em] text-principal">Vidas Ayudadas</p><p class="text-3xl font-black text-texto-principal" id="stat-padrinos-total">0</p></div>
+                    </div>
+                </div>
+
+                <div id="contenedor-padrinazgos" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+
+                <div id="seccion-recuerdos" class="mt-12 hidden">
+                    <button data-action="toggle-recuerdos" class="w-full flex items-center justify-between p-6 bg-green-50/50 dark:bg-green-900/10 rounded-[2rem] border border-green-100 dark:border-green-800 group hover:bg-green-100 transition-all">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 bg-white dark:bg-[#1f1b16] rounded-xl flex items-center justify-center shadow-sm text-green-600"><span class="material-symbols-outlined">auto_stories</span></div>
+                            <div class="text-left"><h3 class="text-sm font-black uppercase tracking-widest text-green-800 dark:text-green-300">Vidas salvadas que ya han encontrado un hogar</h3><p class="text-[10px] font-bold text-green-600/70 uppercase tracking-widest">Tu huella en Catfeina para siempre</p></div>
+                        </div>
+                        <span id="chevron-recuerdos" class="material-symbols-outlined text-green-400 group-hover:text-green-600 transition-all">expand_more</span>
+                    </button>
+                    <div id="lista-recuerdos" class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6 animate-joy"></div>
+                </div>
+            </div>
+
+            <div id="pantalla-perfil" class="seccion-panel animate-joy">
+                <h2 class="text-2xl font-black mb-8 uppercase tracking-tighter text-center md:text-left">Mi Perfil</h2>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                    <!-- Información personal del perfil -->
+                    <form id="form-perfil" class="bg-white border border-gray-100 p-8 md:p-10 rounded-[2.5rem] shadow-sm" novalidate>
+                        <div class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="text-[9px] font-black uppercase text-gray-400 ml-2 mb-1 block tracking-widest">Nombre</label>
+                                    <input type="text" id="perf-nombre" class="w-full p-4 rounded-2xl border-2 border-gray-50 focus:border-principal transition-all outline-none">
+                                </div>
+                                <div>
+                                    <label class="text-[9px] font-black uppercase text-gray-400 ml-2 mb-1 block tracking-widest">Apellidos</label>
+                                    <input type="text" id="perf-apellidos" class="w-full p-4 rounded-2xl border-2 border-gray-50 focus:border-principal transition-all outline-none">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="text-[9px] font-black uppercase text-gray-400 ml-2 mb-1 block tracking-widest">Teléfono de contacto</label>
+                                <input type="text" id="perf-telefono" class="w-full p-4 rounded-2xl border-2 border-gray-50 focus:border-principal transition-all outline-none">
+                            </div>
+                            <button type="submit" class="w-full py-4 bg-principal text-texto-principal text-[10px] font-black uppercase tracking-[0.2em] rounded-2xl shadow-lg shadow-principal/20 hover:scale-[1.02] transition-all">Guardar cambios</button>
+                        </div>
+                    </form>
+
+                    <!-- Configuración de seguridad y contraseña -->
+                    <div class="bg-gray-50/50 rounded-[2.5rem] border border-gray-100 overflow-hidden transition-all duration-500">
+                        <button data-action="toggle-seguridad" class="w-full p-6 flex items-center justify-between group">
+                            <div class="flex items-center gap-4">
+                                <div class="size-10 bg-white rounded-xl flex items-center justify-center text-gray-400 group-hover:text-principal shadow-sm transition-colors">
+                                    <span class="material-symbols-outlined">shield_person</span>
+                                </div>
+                                <div class="text-left">
+                                    <h4 class="text-xs font-black uppercase tracking-widest text-texto-principal">Seguridad</h4>
+                                    <p class="text-[9px] font-bold text-gray-400 uppercase">Cambiar contraseña</p>
+                                </div>
+                            </div>
+                            <span id="chevron-seguridad" class="material-symbols-outlined text-gray-300 group-hover:text-principal transition-all">expand_more</span>
+                        </button>
+
+                        <form id="form-password" class="hidden p-8 pt-0 space-y-6 animate-fade-in" novalidate>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="text-[9px] font-black uppercase text-rose-400 ml-2 mb-1 block">Clave Actual</label>
+                                    <input type="password" id="perf-pass-actual" class="w-full p-4 rounded-2xl border-2 border-rose-50 focus:border-rose-400 outline-none transition-all" autocomplete="current-password">
+                                </div>
+                                <div>
+                                    <label class="text-[9px] font-black uppercase text-rose-400 ml-2 mb-1 block">Nueva Clave</label>
+                                    <input type="password" id="perf-pass-nueva" class="w-full p-4 rounded-2xl border-2 border-rose-50 focus:border-rose-400 outline-none transition-all" autocomplete="new-password">
+                                    <p id="error-perf-pass-nueva" class="text-[8px] text-red-500 font-black uppercase hidden ml-2 mt-1 italic"></p>
+                                </div>
+                            </div>
+                            <button type="submit" class="w-full py-4 bg-black text-white text-[10px] font-black uppercase tracking-widest rounded-2xl shadow-xl hover:bg-gray-800 transition-all">Actualizar seguridad</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="modal-gato" class="fixed inset-0 z-[200] hidden items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/40 backdrop-blur-sm" data-action="close-modal" data-modal-id="modal-gato"></div>
+        <div class="relative bg-white w-full max-w-xl rounded-[2.5rem] overflow-hidden shadow-2xl animate-joy"><div id="contenido-modal-gato"></div></div>
+    </div>
+
+    <div id="modal-seleccion-ahijado" class="fixed inset-0 z-[300] hidden items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-md" data-action="close-modal" data-modal-id="modal-seleccion-ahijado"></div>
+        <div class="relative bg-white dark:bg-[#1f1b16] w-full max-w-2xl rounded-[3rem] shadow-2xl overflow-hidden flex flex-col animate-joy border border-principal/20">
+            <div class="p-8 bg-principal text-texto-principal flex justify-between items-center">
+                <div><h3 class="text-2xl font-black uppercase tracking-tight">Elige a tu nuevo ahijado</h3><p class="text-[10px] font-bold uppercase tracking-widest opacity-80">Tu ayuda seguirá transformando vidas</p></div>
+                <button data-action="close-modal" data-modal-id="modal-seleccion-ahijado" class="text-texto-principal/50 hover:text-texto-principal transition-colors"><span class="material-symbols-outlined pointer-events-none">close</span></button>
+            </div>
+            <div id="lista-gatos-disponibles" class="p-8 grid grid-cols-2 sm:grid-cols-3 gap-4 max-h-[60vh] overflow-y-auto hide-scrollbar"></div>
+            <div class="p-6 bg-gray-50 dark:bg-white/5 border-t border-gray-100 dark:border-white/5 text-center"><p class="text-[9px] text-gray-400 font-bold uppercase tracking-widest">Mantendremos tu cuota mensual actual</p></div>
+        </div>
+    </div>
+
+    <div id="modal-detalle-pedido" class="fixed inset-0 z-[300] hidden items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/40 backdrop-blur-sm" data-action="close-modal" data-modal-id="modal-detalle-pedido"></div>
+        <div class="relative bg-white w-full max-w-xl rounded-[2.5rem] overflow-hidden shadow-2xl animate-joy p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-black italic">Detalle de tu <span class="text-principal">Pedido</span></h3>
+                <button data-action="close-modal" data-modal-id="modal-detalle-pedido" class="text-gray-400 hover:text-red-500 transition-colors">
+                    <span class="material-symbols-outlined pointer-events-none">close</span>
+                </button>
+            </div>
+            <div id="detalle-pedido-contenido" class="space-y-4 max-h-[60vh] overflow-y-auto pr-2 hide-scrollbar">
+                <!-- Contenido dinámico -->
+            </div>
+            <div class="mt-8 pt-6 border-t border-gray-100 flex justify-between items-center">
+                <span class="text-sm font-bold text-gray-400 uppercase tracking-widest">Total Pagado</span>
+                <span id="detalle-pedido-total" class="text-2xl font-black text-texto-principal">0.00€</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="/components/loader.js"></script>
+    <script src="miembro.js" type="module"></script>
+</body>
+</html>

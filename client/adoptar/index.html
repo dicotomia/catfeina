@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Cuestionario de Adopción | Catfeina</title>
+    <link rel="icon" type="image/svg+xml" href="/recursos/imagenes/logo-flavicon.svg">
+    <link rel="stylesheet" href="/recursos/css/estilos-globales.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="/recursos/js/tema-tailwind.js"></script>
+    <!-- Librería para la generación de documentos PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .animar-entrada { animation: subir 0.6s ease-out forwards; }
+        @keyframes subir { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .seccion-form { border-left: 4px solid #EAB308; padding-left: 1.5rem; margin-bottom: 3rem; }
+    </style>
+</head>
+
+<body class="bg-[#fdfaf7] dark:bg-[#150f0a] font-display text-texto-principal dark:text-gray-100 pb-20">
+
+    <div id="nav-placeholder"></div>
+
+    <!-- Contenedor para notificaciones emergentes -->
+    <div id="toast-container" class="fixed top-24 right-8 z-[200] flex flex-col gap-3 pointer-events-none"></div>
+
+    <main class="min-h-screen pt-32 px-4">
+        
+        <header class="max-w-4xl mx-auto text-center mb-16 animar-entrada">
+            <h1 class="text-4xl md:text-5xl font-black mb-4 uppercase tracking-tighter">Cuestionario de <span class="text-principal italic">Adopción</span></h1>
+            <p class="text-texto-secundario dark:text-gray-400 font-medium max-w-2xl mx-auto leading-relaxed">
+                Este documento es el primer paso para ofrecerle un hogar a uno de nuestros gatos. Por favor, tómate tu tiempo para responder con sinceridad.
+            </p>
+        </header>
+
+        <div class="max-w-4xl mx-auto bg-white dark:bg-[#1f1b16] rounded-[3rem] shadow-2xl p-8 md:p-16 border border-principal/10">
+            
+            <form id="form-adopcion-completo" novalidate>
+                
+                <!-- Datos personales del solicitante -->
+                <div class="seccion-form">
+                    <h2 class="text-xl font-black mb-6 uppercase tracking-widest text-principal">1. Datos Personales</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div><label>Nombre</label><input type="text" name="nombre" id="f-nombre" required readonly class="opacity-70 cursor-not-allowed"></div>
+                        <div><label>Apellidos</label><input type="text" name="apellidos" id="f-apellidos" required readonly class="opacity-70 cursor-not-allowed"></div>
+                        <div class="md:col-span-2"><label>Dirección Completa</label><input type="text" name="direccion" id="f-direccion" required></div>
+                        <div><label>Provincia</label><input type="text" name="provincia" id="f-provincia" required></div>
+                        <div><label>Localidad</label><input type="text" name="localidad" id="f-localidad" required></div>
+                        <div><label>Código Postal</label><input type="text" name="cp" id="f-cp" required></div>
+                        <div><label>Teléfono</label><input type="text" name="telefono" id="f-telefono" required></div>
+                        <div><label>E-mail</label><input type="email" name="email" id="f-email" required readonly class="opacity-70 cursor-not-allowed"></div>
+                        <div><label>Fecha de Nacimiento</label><input type="date" name="fecha_nacimiento" id="f-nacimiento" required></div>
+                        <div><label>Nacionalidad</label><input type="text" name="nacionalidad" id="f-nacionalidad" required></div>
+                        <div class="md:col-span-2"><label>Profesión o Trabajo actual</label><input type="text" name="profesion" id="f-profesion" required></div>
+                    </div>
+                </div>
+
+                <!-- Información sobre el estilo de vida -->
+                <div class="seccion-form">
+                    <h2 class="text-xl font-black mb-6 uppercase tracking-widest text-principal">2. Sobre ti</h2>
+                    <div class="space-y-6">
+                        <div>
+                            <label>¿Por qué deseas adoptar un gato?</label>
+                            <select name="motivo" required>
+                                <option value="Compañía">Por la compañía</option>
+                                <option value="Animales">Porque me gustan los animales</option>
+                                <option value="Hijos">Por mis hijos</option>
+                                <option value="Pareja">Para mi pareja</option>
+                                <option value="Regalo">Para regalar</option>
+                                <option value="Otro">Otro (especificar abajo)</option>
+                            </select>
+                        </div>
+                        <div><label>¿Cuál es tu estilo de vida? (Viajes, tiempo en casa...)</label><textarea name="estilo_vida" rows="2" required></textarea></div>
+                        <div><label>Proyectos a corto/medio plazo (Independencia, hijos, mudanza...)</label><textarea name="proyectos" rows="2" required></textarea></div>
+                        <div><label>Situación laboral (Autónomo, teletrabajo, horario...)</label><textarea name="situacion_laboral" rows="2" required></textarea></div>
+                        <div><label>¿Has tenido alguna vez gato? ¿Qué relación tenías con él?</label><textarea name="experiencia_gatos" rows="2" required></textarea></div>
+                    </div>
+                </div>
+
+                <!-- Detalles sobre el hogar y la familia -->
+                <div class="seccion-form">
+                    <h2 class="text-xl font-black mb-6 uppercase tracking-widest text-principal">3. Hogar y Familia</h2>
+                    <div class="space-y-6">
+                        <div><label>¿Qué esperas de tu futuro gato?</label><textarea name="expectativas" rows="2" required></textarea></div>
+                        <div><label>¿Todos los miembros de la familia están de acuerdo?</label>
+                            <select name="acuerdo_familia" required><option value="Sí">Sí</option><option value="No">No</option></select>
+                        </div>
+                        <div><label>Tipo de vivienda</label>
+                            <select name="tipo_vivienda" required>
+                                <option value="Piso">Piso sin acceso exterior</option>
+                                <option value="Piso con terraza">Piso con terraza/balcón</option>
+                                <option value="Casa con jardín">Casa con jardín</option>
+                                <option value="Habitación">Habitación en piso compartido</option>
+                                <option value="Otro">Otro (especificar abajo)</option>
+                            </select>
+                        </div>
+                        <div><label>Si has marcado "Otro", especifica aquí:</label><input type="text" name="tipo_vivienda_detalle" placeholder="Escribe aquí los detalles de tu vivienda"></div>
+                        <div><label>¿Qué espacio de la casa estará destinado al gato?</label><input type="text" name="espacio_gato" required></div>
+                        <div><label>¿Tienes otros animales actualmente? (Indica si están testados de Felv-Fiv)</label><textarea name="otros_animales" rows="2" required></textarea></div>
+                        <div><label>¿Cuánto tiempo se quedará solo el animal al día?</label><input type="text" name="tiempo_solo" required></div>
+                        <div><label>¿Qué harás con él en vacaciones o si te vas al extranjero?</label><textarea name="viajes" rows="2" required></textarea></div>
+                        <div><label>¿Dónde dormirá el gato?</label><input type="text" name="lugar_dormir" required></div>
+                    </div>
+                </div>
+
+                <!-- Conocimientos previos sobre tenencia responsable -->
+                <div class="seccion-form">
+                    <h2 class="text-xl font-black mb-6 uppercase tracking-widest text-principal">4. Sobre los gatos</h2>
+                    <div class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label>¿Qué alimentación le darás?</label>
+                                <select name="alimentacion" required>
+                                    <option value="Solo pienso">Solo pienso</option>
+                                    <option value="Mixta (Pienso y húmeda)">Mixta (Pienso y húmeda)</option>
+                                    <option value="Barf / Casera">Barf / Casera</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label>¿Permitirás que salga al exterior solo?</label>
+                                <select name="salida_exterior" required>
+                                    <option value="No">No, siempre en interior</option>
+                                    <option value="Sí, libremente">Sí, libremente</option>
+                                    <option value="Solo bajo supervisión">Solo bajo supervisión (arnés/patio vallado)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div><label>¿Cada cuánto lo llevarás al veterinario si está sano?</label><input type="text" name="frecuencia_vet" required></div>
+                        <div><label>¿Qué harás si se pierde o tiene problemas de salud graves?</label><textarea name="problemas_salud" rows="2" required></textarea></div>
+                        <div><label>¿Qué harías si el gato rompe cosas en casa o se comporta de una manera que no esperas?</label><textarea name="comportamiento_destrozos" rows="2" required></textarea></div>
+                        <div><label>¿Qué opinas sobre el abandono animal?</label><textarea name="opinion_abandono" rows="2" required></textarea></div>
+                        <div><label>¿Tienes protecciones en ventanas o balcones? ¿Qué medidas tomarás?</label><textarea name="protecciones" rows="2" required></textarea></div>
+                        <div><label>¿Qué harás si el gato desarrolla alergias o hay un embarazo?</label><textarea name="alergias_embarazo" rows="2" required></textarea></div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label>Opinión sobre desunglar (quitar uñas):</label>
+                                <select name="desunglar" required>
+                                    <option value="En contra">En contra (Es una amputación)</option>
+                                    <option value="A favor">A favor</option>
+                                    <option value="No sé">No conozco la práctica</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-10">
+                    <button type="submit" id="btn-enviar" class="w-full py-5 bg-principal text-texto-principal font-black rounded-2xl hover:scale-[1.02] transition-all shadow-xl shadow-principal/30 uppercase tracking-widest flex items-center justify-center gap-3">
+                        GENERAR SOLICITUD Y ENVIAR
+                        <span class="material-symbols-outlined">description</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Modal de aviso de inicio de sesión requerido -->
+    <div id="modal-login-requerido" class="hidden fixed inset-0 bg-black/60 backdrop-blur-md z-[999] items-center justify-center p-4 text-center">
+        <div class="bg-white dark:bg-[#1f1b16] p-10 rounded-[2.5rem] max-w-sm w-full shadow-2xl relative overflow-hidden border border-principal/20">
+            <div class="absolute -top-10 -right-10 w-32 h-32 bg-principal/10 rounded-full blur-2xl"></div>
+            <div class="w-20 h-20 bg-principal/20 text-principal rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner">
+                <span class="material-symbols-outlined text-4xl">lock</span>
+            </div>
+            <h3 class="text-2xl font-black mb-3 text-texto-principal dark:text-white">¡Hola, humano!</h3>
+            <p class="text-texto-secundario dark:text-gray-400 mb-8 leading-relaxed">Para poder enviar una solicitud de adopción, primero debes <span class="font-bold text-principal">iniciar sesión</span>.</p>
+            <div class="flex flex-col gap-3">
+                <a href="/login/" class="w-full py-4 bg-principal text-texto-principal font-black rounded-2xl hover:scale-105 transition-all shadow-lg shadow-principal/30">IR AL LOGIN</a>
+                <button onclick="window.location.href='/gatos/'" class="w-full py-3 text-texto-secundario dark:text-gray-500 font-bold hover:text-texto-principal transition-colors">Volver a los gatos</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="/utilidades.js" type="module"></script>
+    <script src="/recursos/js/carrito.js" type="module"></script>
+    <script src="/recursos/js/modales.js" type="module"></script>
+    <script src="/components/loader.js"></script>
+    <script src="adoptar.js" type="module"></script>
+</body>
+</html>

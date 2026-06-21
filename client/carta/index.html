@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Menú Cafetería | Catfeina</title>
+    <link rel="preload" href="/recursos/fuentes/Waterlily.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/recursos/css/estilos-globales.css">
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="/recursos/js/tema-tailwind.js"></script>
+
+    <style>
+        .font-handwritten {
+            font-family: 'Waterlily', cursive;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-fondo-claro dark:bg-fondo-oscuro text-texto-principal dark:text-white font-display transition-colors duration-200 overflow-x-hidden">
+    <div id="nav-placeholder"></div>
+
+    <main>
+        <!-- Cabecera de la sección de carta -->
+        <header class="w-full bg-[#fdfaf7] dark:bg-[#150f0a] pt-16 pb-4 px-4 relative overflow-hidden text-center">
+            <!-- Fondo decorativo -->
+            <div class="absolute inset-0 opacity-20 pointer-events-none">
+                <img loading="lazy" src="/recursos/imagenes/cabecera-carta.webp" class="w-full h-full object-cover">
+            </div>
+            
+            <div class="max-w-4xl mx-auto relative z-10 flex items-center justify-center gap-6">
+                <h1 class="font-waterlily text-5xl md:text-7xl text-principal leading-none tracking-normal">
+                    Nuestra carta
+                </h1>
+                <div class="hidden sm:block w-24 md:w-32">
+                    <img src="/recursos/imagenes/gato-animado.webp" alt="Gatito" class="w-full h-auto">
+                </div>
+            </div>
+        </header>
+
+
+        <section class="bg-[#f7f5f0] pt-6 pb-12">
+            <div class="max-w-6xl mx-auto px-4">
+                <h2 class="text-2xl font-extrabold mb-2 flex items-center gap-2 text-[#181511]">
+                    <span class="material-symbols-outlined text-principal">star</span>
+                    Favoritos de la Casa
+                </h2>
+                <p class="text-texto-secundario text-sm mb-10">Los más pedidos por nuestros humanos visitantes.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm flex flex-col sm:flex-row gap-6 items-center">
+                        <div class="w-40 h-40 rounded-3xl overflow-hidden flex-shrink-0 shadow-md">
+                            <img loading="lazy" src="/recursos/imagenes/capucchino.webp" alt="Cappuccino Miau"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <div class="flex-1 w-full sm:w-auto">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-bold text-xl text-[#181511]">Cappuccino Miau</h3>
+                                <span class="font-bold text-xl text-[#181511]">2,50€</span>
+                            </div>
+                            <p class="text-texto-secundario text-sm mb-4 leading-relaxed">Espresso doble con leche
+                                texturizada y arte latte felino. ¡Instagrameable!</p>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-white p-6 rounded-2xl shadow-sm flex flex-col sm:flex-row gap-6 items-center border border-principal/10">
+                        <div class="w-40 h-40 rounded-3xl overflow-hidden flex-shrink-0 shadow-md">
+                            <img loading="lazy" src="/recursos/imagenes/pistacho.webp" alt="Crumble Cookie Pistacho"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <div class="flex-1 w-full sm:w-auto">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-bold text-xl text-[#181511] leading-tight">Crumble Cookie de Pistacho
+                                </h3>
+                                <span class="font-bold text-xl text-[#181511]">3,20€</span>
+                            </div>
+                            <p class="text-texto-secundario text-sm mb-4 leading-relaxed">Nuestra joya de la corona:
+                                masa crujiente rellena de crema de pistacho 100% natural.</p>
+                            <span
+                                class="bg-principal/20 text-principal text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider">Top
+                                Ventas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-12 max-w-4xl mx-auto px-4">
+            <h2 class="text-2xl font-extrabold mb-10 flex items-center gap-3 text-[#181511]">
+                <span class="material-symbols-outlined text-texto-secundario">coffee</span>
+                Bebidas Calientes
+            </h2>
+
+            <div class="space-y-6">
+                <div
+                    class="flex items-center gap-6 bg-white p-4 rounded-3xl border border-gray-100 hover:border-principal/30 transition-colors shadow-sm">
+                    <img loading="lazy" src="/recursos/imagenes/espresso.webp"
+                        class="w-32 h-32 rounded-2xl object-cover bg-gray-100 p-1" alt="Espresso">
+                    <div class="flex-1">
+                        <h3 class="font-bold text-lg text-[#181511]">Espresso</h3>
+                        <p class="text-texto-secundario text-sm">Elegible Intenso y aromático de Colombia o suave y
+                            ligero de Brasil.</p>
+                    </div>
+                    <span class="font-bold text-2xl text-[#181511]">1,70€</span>
+                </div>
+                <div
+                    class="flex items-center gap-6 bg-white p-4 rounded-3xl border border-gray-100 hover:border-principal/30 transition-colors shadow-sm">
+                    <img loading="lazy" src="/recursos/imagenes/cafe-latte.webp"
+                        class="w-32 h-32 rounded-2xl object-cover bg-gray-100 p-1" alt="Latte">
+                    <div class="flex-1">
+                        <h3 class="font-bold text-lg text-[#181511]">Café Latte</h3>
+                        <p class="text-texto-secundario text-sm">Suave y dulce café con leche.</p>
+                    </div>
+                    <span class="font-bold text-2xl text-[#181511]">2,30€</span>
+                </div>
+                <div
+                    class="flex items-center gap-6 bg-white p-4 rounded-3xl border border-gray-100 hover:border-principal/30 transition-colors shadow-sm">
+                    <img loading="lazy" src="/recursos/imagenes/vainilla-latte.webp"
+                        class="w-32 h-32 rounded-2xl object-cover bg-gray-100 p-1" alt="Americano">
+                    <div class="flex-1">
+                        <h3 class="font-bold text-lg text-[#181511]">Vainilla Latte</h3>
+                        <p class="text-texto-secundario text-sm">Suave y dulce, con jarabe natural de vainilla.</p>
+                    </div>
+                    <span class="font-bold text-2xl text-[#181511]">2,90€</span>
+                </div>
+                <div
+                    class="flex items-center gap-6 bg-white p-4 rounded-3xl border border-gray-100 hover:border-principal/30 transition-colors shadow-sm">
+                    <img loading="lazy" src="/recursos/imagenes/matcha-latte.webp"
+                        class="w-32 h-32 rounded-2xl object-cover bg-gray-100 p-1" alt="Matcha">
+                    <div class="flex-1">
+                        <h3 class="font-bold text-lg text-[#181511]">Matcha Latte</h3>
+                        <p class="text-texto-secundario text-sm">Té verde ceremonial japonés con leche espumada.</p>
+                    </div>
+                    <span class="font-bold text-2xl text-[#181511]">2,90€</span>
+                </div>
+                <div
+                    class="flex items-center gap-6 bg-white p-4 rounded-3xl border border-gray-100 hover:border-principal/30 transition-colors shadow-sm">
+                    <img loading="lazy" src="/recursos/imagenes/pink-latte.webp"
+                        class="w-32 h-32 rounded-2xl object-cover bg-gray-100 p-1" alt="Chai">
+                    <div class="flex-1">
+                        <h3 class="font-bold text-lg text-[#181511]">Pink Latte</h3>
+                        <p class="text-texto-secundario text-sm">Deliciosa y saludable bebida natural preparada con
+                            remolacha. </p>
+                    </div>
+                    <span class="font-bold text-2xl text-[#181511]">2,90€</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-12 max-w-4xl mx-auto px-4">
+            <h2 class="text-2xl font-extrabold mb-10 flex items-center gap-3 text-[#181511]">
+                <span class="material-symbols-outlined text-blue-500">ac_unit</span>
+                Bebidas Frías & Smoothies
+            </h2>
+
+            <div class="space-y-6">
+                <div
+                    class="flex items-center gap-6 bg-white p-4 rounded-3xl border border-gray-100 hover:border-principal/30 transition-colors shadow-sm">
+                    <img loading="lazy" src="/recursos/imagenes/cold-brew.webp"
+                        class="w-32 h-44 rounded-2xl object-cover bg-gray-100 p-1" alt="Cold Brew">
+                    <div class="flex-1">
+                        <h3 class="font-bold text-lg text-[#181511]">Cold Brew</h3>
+                        <p class="text-texto-secundario text-sm">Café extraído en frío durante 12 horas, suave y
+                            refrescante.</p>
+                    </div>
+                    <span class="font-bold text-2xl text-[#181511]">3,50€</span>
+                </div>
+                <div
+                    class="flex items-center gap-6 bg-white p-4 rounded-3xl border border-gray-100 hover:border-principal/30 transition-colors shadow-sm">
+                    <img loading="lazy" src="/recursos/imagenes/fresa-platano.webp"
+                        class="w-32 h-44 rounded-2xl object-cover bg-gray-100 p-1" alt="Smoothie Fresa">
+                    <div class="flex-1">
+                        <h3 class="font-bold text-lg text-[#181511]">Smoothie Fresa y Plátano</h3>
+                        <p class="text-texto-secundario text-sm">Fruta natural batida con base de leche o bebida
+                            vegetal.</p>
+                    </div>
+                    <span class="font-bold text-2xl text-[#181511]">4,50€</span>
+                </div>
+                <div
+                    class="flex items-center gap-6 bg-white p-4 rounded-3xl border border-gray-100 hover:border-principal/30 transition-colors shadow-sm">
+                    <img loading="lazy" src="/recursos/imagenes/jenjibre-curcuma.webp"
+                        class="w-32 h-44 rounded-2xl object-cover bg-gray-100 p-1" alt="Smoothie Jengibre">
+                    <div class="flex-1">
+                        <h3 class="font-bold text-lg text-[#181511]">Smoothie Jengibre y Cúrcuma</h3>
+                        <p class="text-texto-secundario text-sm">Energizante y antiinflamatorio con un toque cítrico.
+                        </p>
+                    </div>
+                    <span class="font-bold text-2xl text-[#181511]">4,50€</span>
+                </div>
+                <div
+                    class="flex items-center gap-6 bg-white p-4 rounded-3xl border border-gray-100 hover:border-principal/30 transition-colors shadow-sm">
+                    <img loading="lazy" src="/recursos/imagenes/nutella.webp"
+                        class="w-32 h-44 rounded-2xl object-cover bg-gray-100 p-1" alt="Smoothie Nutella">
+                    <div class="flex-1">
+                        <h3 class="font-bold text-lg text-[#181511]">Smoothie de Nutella</h3>
+                        <p class="text-texto-secundario text-sm">Para los más golosos, con avellanas y chocolate.</p>
+                    </div>
+                    <span class="font-bold text-2xl text-[#181511]">4,50€</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-[#f7f5f0] py-12 overflow-hidden">
+            <div class="max-w-6xl mx-auto px-4 flex flex-col lg:flex-row gap-12 items-start">
+                <div class="lg:w-1/4 flex justify-center lg:sticky lg:top-32">
+                    <img loading="lazy" src="/recursos/imagenes/gato-cocina.webp" alt="Gato Cocina"
+                        class="w-48 lg:w-64 opacity-90 grayscale-[30%] hover:grayscale-0 transition-all">
+                </div>
+
+                <div class="flex-1">
+                    <h2 class="text-2xl font-extrabold mb-10 flex items-center gap-3 text-[#181511]">
+                        <span class="material-symbols-outlined text-texto-secundario">cookie</span>
+                        Repostería Casera
+                    </h2>
+
+
+
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+                        <div class="bg-white rounded-2xl overflow-hidden shadow-sm group">
+                            <div class="h-40 relative overflow-hidden">
+                                <img loading="lazy" src="/recursos/imagenes/tarta-queso.webp"
+                                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                                <span
+                                    class="absolute top-3 right-3 bg-white text-[#181511] font-bold px-3 py-1 rounded-full text-sm shadow-sm">3,50€</span>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-bold text-[#181511] text-sm leading-tight ">Tarta de Queso Casera</h3>
+                                <p class="text-texto-secundario text-xs mt-1">Cremosa y tradicional, hecha cada mañana.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-2xl overflow-hidden shadow-sm group">
+                            <div class="h-40 relative overflow-hidden">
+                                <img loading="lazy" src="/recursos/imagenes/bizcocho-matcha.webp"
+                                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                                <span
+                                    class="absolute top-3 right-3 bg-white text-[#181511] font-bold px-3 py-1 rounded-full text-sm shadow-sm">3,50€</span>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-bold text-[#181511]">Bizcocho de Matcha</h3>
+                                <p class="text-texto-secundario text-xs mt-1">Esponjoso bizcocho con auténtico té verde
+                                    ceremonial.</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-2xl overflow-hidden shadow-sm group">
+                            <div class="h-40 relative overflow-hidden">
+                                <img loading="lazy" src="/recursos/imagenes/tarta-zanahoria.webp"
+                                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                                <span
+                                    class="absolute top-3 right-3 bg-white text-[#181511] font-bold px-3 py-1 rounded-full text-sm shadow-sm">3,50€</span>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-bold text-[#181511] leading-tight">Tarta de Zanahoria</h3>
+                                <p class="text-texto-secundario text-xs mt-1">Nuestra receta clásica con frosting de
+                                    crema.</p>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-2xl overflow-hidden shadow-sm group">
+                            <div class="h-40 relative overflow-hidden">
+                                <img loading="lazy" src="/recursos/imagenes/red-velvet.webp"
+                                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                                <span
+                                    class="absolute top-3 right-3 bg-white text-[#181511] font-bold px-3 py-1 rounded-full text-sm shadow-sm">3,20€</span>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-bold text-[#181511] text-sm leading-tight">Crumble de Red Velvet</h3>
+                                <p class="text-texto-secundario text-xs mt-1">Suave, aterciopelada y con el punto justo
+                                    de cacao.</p>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-2xl overflow-hidden shadow-sm group">
+                            <div class="h-40 relative overflow-hidden">
+                                <img loading="lazy" src="/recursos/imagenes/cookie.webp"
+                                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                                <span
+                                    class="absolute top-3 right-3 bg-white text-[#181511] font-bold px-3 py-1 rounded-full text-sm shadow-sm">3,20€</span>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-bold text-[#181511] text-sm leading-tight ">Crumble Cookie de Chispas
+                                </h3>
+                                <p class="text-texto-secundario text-xs mt-1">Clásica, crujiente y llena de trozos de
+                                    chocolate.</p>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-2xl overflow-hidden shadow-sm group">
+                            <div class="h-40 relative overflow-hidden">
+                                <img loading="lazy" src="/recursos/imagenes/muffins.webp"
+                                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                                <span
+                                    class="absolute top-3 right-3 bg-white text-[#181511] font-bold px-3 py-1 rounded-full text-sm shadow-sm">2,20€</span>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-bold text-[#181511]">Muffins Artesanos</h3>
+                                <p class="text-texto-secundario text-xs mt-1">Rellenos de Fresa, Cookies, Limón o
+                                    Nutella.</p>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-12 max-w-6xl mx-auto px-4 flex flex-col lg:flex-row-reverse gap-12 items-start mb-10">
+            <div class="lg:w-1/4 flex justify-center lg:sticky lg:top-32">
+                <img loading="lazy" src="/recursos/imagenes/gato-amasando.webp" alt="Gato Amasando"
+                    class="w-40 lg:w-56 opacity-90 grayscale-[30%] hover:grayscale-0 transition-all">
+            </div>
+
+            <div class="flex-1 w-full">
+                <h2 class="text-2xl font-extrabold mb-10 flex items-center gap-3 text-[#181511]">
+                    <span class="material-symbols-outlined text-texto-secundario">restaurant</span>
+                    Brunch & Tostas Artesanas
+                </h2>
+
+                <div class="space-y-6">
+                    <div
+                        class="flex flex-col md:flex-row gap-6 bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all">
+                        <img loading="lazy" src="/recursos/imagenes/huevos-benedictinos.webp"
+                            class="w-full md:w-40 h-40 md:h-auto rounded-xl object-cover" alt="Huevos Benedictinos">
+                        <div class="flex-1 flex flex-col justify-between py-2">
+                            <div>
+                                <div class="flex justify-between items-start mb-2">
+                                    <h3 class="font-bold text-xl text-[#181511]">Huevos Benedictinos</h3>
+                                    <span class="font-bold text-2xl text-[#181511]">7,50€</span>
+                                </div>
+                                <p class="text-texto-secundario text-sm mb-3 leading-relaxed">Huevos poché con salsa
+                                    holandesa casera sobre muffin inglés tostado y bacon crujiente.</p>
+                            </div>
+                            <span
+                                class="bg-[#fef3c7] text-[#92400e] text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider w-fit">Clásico
+                                Brunch</span>
+                        </div>
+                    </div>
+                    <div
+                        class="flex flex-col md:flex-row gap-6 bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all">
+                        <img loading="lazy" src="/recursos/imagenes/tosta-aguacate-salmon.webp"
+                            class="w-full md:w-40 h-40 md:h-auto rounded-xl object-cover" alt="La salmonita">
+                        <div class="flex-1 flex flex-col justify-center py-2">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-bold text-xl text-[#181511] leading-tight">La salmonita</h3>
+                                <span class="font-bold text-2xl text-[#181511]">4,50€</span>
+                            </div>
+                            <p class="text-texto-secundario text-sm leading-relaxed">2 Tostas de salmón ahumado,
+                                aguacate laminado y huevo sobre pan de masa madre.</p>
+                        </div>
+                    </div>
+                    <div
+                        class="flex flex-col md:flex-row gap-6 bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all">
+                        <img loading="lazy" src="/recursos/imagenes/tosta-rucula-jamon.webp"
+                            class="w-full md:w-40 h-40 md:h-auto rounded-xl object-cover" alt="La jamoncita">
+                        <div class="flex-1 flex flex-col justify-center py-2">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-bold text-xl text-[#181511] leading-tight">La jamoncita</h3>
+                                <span class="font-bold text-2xl text-[#181511]">4,50€</span>
+                            </div>
+                            <p class="text-texto-secundario text-sm leading-relaxed">2 Tostas de jamón ibérico, rúcula
+                                fresca y queso sobre base de tomate natural.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-4xl mx-auto px-4 -mt-12 relative z-20 mb-10">
+            <div
+                class="bg-white dark:bg-[#1f1b16] rounded-[2.5rem] p-6 md:p-8 shadow-xl border border-principal/20 flex flex-col md:flex-row items-center gap-8 relative overflow-hidden group">
+                <div
+                    class="absolute top-0 right-0 w-32 h-32 bg-principal/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl">
+                </div>
+
+                <div class="flex-1 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-10 h-10 rounded-xl bg-principal text-texto-principal flex items-center justify-center shadow-lg shadow-principal/20">
+                            <span class="material-symbols-outlined text-xl">laptop_mac</span>
+                        </div>
+                        <h2 class="text-xl md:text-2xl font-black text-texto-principal dark:text-white tracking-tight">
+                            Pack <span class="text-principal italic"> Coworking </span> Focus time</h2>
+                    </div>
+
+                    <p class="text-xs text-texto-secundario dark:text-gray-400 font-medium leading-relaxed max-w-md">
+                        1 hora de escritorio privado en sala grupal.
+                    </p>
+
+                    <div class="flex flex-wrap gap-x-6 gap-y-2 pt-1">
+                        <div
+                            class="flex items-center gap-2 text-[10px] font-bold text-texto-principal dark:text-gray-300">
+                            <span class="material-symbols-outlined text-principal text-sm">check_circle</span>
+                            WiFi de alta velocidad
+                        </div>
+                        <div
+                            class="flex items-center gap-2 text-[10px] font-bold text-texto-principal dark:text-gray-300">
+                            <span class="material-symbols-outlined text-principal text-sm">check_circle</span>
+                            1 Bebida a elegir
+                        </div>
+                        <div
+                            class="flex items-center gap-2 text-[10px] font-bold text-texto-principal dark:text-gray-300">
+                            <span class="material-symbols-outlined text-principal text-sm">check_circle</span>
+                            Tosta o Repostería a elegir
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="flex items-center gap-6 bg-fondo-claro dark:bg-white/5 px-6 py-4 rounded-2xl border border-gray-100 dark:border-white/5">
+                    <div class="text-right">
+                        <p class="text-[9px] font-black text-texto-secundario uppercase tracking-widest mb-0.5">Precio
+                            Pack</p>
+                        <span class="text-3xl font-black text-texto-principal dark:text-white">12<span
+                                class="text-sm">,90€</span></span>
+                    </div>
+                    <a href="/reservas/formulario.html?tipo=coworking"
+                        class="bg-principal hover:bg-principal/90 text-texto-principal px-6 py-3 rounded-xl font-black text-[10px] uppercase tracking-widest transition-all hover:scale-105 shadow-lg shadow-principal/20">
+                        RESERVAR
+                    </a>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="/components/loader.js"></script>
+</body>
+
+</html>

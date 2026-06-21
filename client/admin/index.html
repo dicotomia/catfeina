@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Admin Panel - Catfeina</title>
+    <link rel="stylesheet" href="/recursos/css/estilos-globales.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: { primary: "#88ca5e", "background-light": "#f7f8f6", "background-dark": "#181e14" }
+                }
+            }
+        };
+    </script>
+    <style>
+        .section-content { display: none; }
+        .section-content.active { display: block; }
+        .nav-link.active { background-color: rgba(136, 202, 94, 0.1); color: #88ca5e; font-weight: bold; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#181511] overflow-hidden">
+    <script>
+        const usuario = JSON.parse(localStorage.getItem('usuario'));
+        if (!usuario || (usuario.rol !== 1 && usuario.rol !== 2)) { window.location.href = '/login'; }
+    </script>
+
+    <div class="flex h-screen w-full">
+        <!-- Panel de navegación lateral -->
+        <aside class="w-64 h-full bg-white border-r border-gray-200 flex flex-col shrink-0">
+            <div class="p-6">
+                <a href="/" class="flex items-center gap-3 group">
+                    <img src="/recursos/imagenes/logo.webp" class="h-10 transition-transform group-hover:scale-110" alt="Logo">
+                    <div class="flex flex-col">
+                        <span class="font-bold text-lg leading-none">Admin Panel</span>
+                        <span class="text-[10px] text-primary font-bold uppercase tracking-widest mt-1">Ir a la Web</span>
+                    </div>
+                </a>
+            </div>
+            <nav class="flex-1 px-4 flex flex-col gap-1">
+                <button class="nav-link active flex items-center gap-3 px-4 py-3 rounded-xl transition-all" data-section="dashboard">
+                    <span class="material-symbols-outlined">dashboard</span> Dashboard
+                </button>
+                <button class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl transition-all" data-section="gatos">
+                    <span class="material-symbols-outlined">pets</span> Gatos
+                </button>
+                <button class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl transition-all" data-section="adopciones">
+                    <span class="material-symbols-outlined">favorite</span> Adopciones
+                </button>
+                <button class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl transition-all" data-section="padrinazgos">
+                    <span class="material-symbols-outlined">volunteer_activism</span> Padrinazgos
+                </button>
+                <button class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl transition-all" data-section="tienda">
+                    <span class="material-symbols-outlined">shopping_bag</span> Tienda
+                </button>
+                <button class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl transition-all" data-section="eventos">
+                    <span class="material-symbols-outlined">event</span> Eventos
+                </button>
+                <button class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl transition-all" data-section="inscripciones">
+                    <span class="material-symbols-outlined">group</span> Inscripciones
+                </button>
+                <button class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl transition-all" data-section="reservas">
+                    <span class="material-symbols-outlined">calendar_month</span> Reservas
+                </button>
+                <button class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl transition-all" data-section="pedidos">
+                    <span class="material-symbols-outlined">receipt_long</span> Pedidos
+                </button>
+                <button class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl transition-all" data-section="usuarios">
+                    <span class="material-symbols-outlined">manage_accounts</span> Usuarios
+                </button>
+                <button class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl transition-all" data-section="comentarios">
+                    <span class="material-symbols-outlined">forum</span> Moderación
+                </button>
+            </nav>
+            <div class="p-4 border-t">
+                <button data-action="logout" class="w-full flex items-center gap-3 px-4 py-2 text-red-500 hover:bg-red-50 rounded-xl transition-all">
+                    <span class="material-symbols-outlined">logout</span> Cerrar Sesión
+                </button>
+            </div>
+        </aside>
+
+        <!-- Contenedor principal de contenidos -->
+        <main class="flex-1 overflow-y-auto p-8 bg-gray-50/50">
+            <!-- Sección de estadísticas y dashboard -->
+            <div id="section-dashboard" class="section-content active space-y-8">
+                <h1 class="text-3xl font-black" id="welcome-msg">Bienvenido/a</h1>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4">
+                        <div class="size-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center"><span class="material-symbols-outlined text-3xl">pets</span></div>
+                        <div><p class="text-xs font-bold text-gray-400 uppercase">Gatos Totales</p><p class="text-3xl font-black" id="stat-gatos">0</p></div>
+                    </div>
+                       <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4">
+                        <div class="size-12 rounded-xl bg-orange-50 text-orange-500 flex items-center justify-center"><span class="material-symbols-outlined text-3xl">volunteer_activism</span></div>
+                        <div><p class="text-xs font-bold text-gray-400 uppercase text-[10px]">Buscando Hogar</p><p class="text-3xl font-black" id="stat-buscando">0</p></div>
+                    </div>
+                      <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4">
+                        <div class="size-12 rounded-xl bg-red-50 text-red-500 flex items-center justify-center"><span class="material-symbols-outlined text-3xl">priority_high</span></div>
+                        <div><p class="text-xs font-bold text-gray-400 uppercase text-[10px]">Casos Urgentes</p><p class="text-3xl font-black" id="stat-urgentes">0</p></div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4">
+                        <div class="size-12 rounded-xl bg-red-50 text-red-500 flex items-center justify-center"><span class="material-symbols-outlined text-3xl">favorite</span></div>
+                        <div><p class="text-xs font-bold text-gray-400 uppercase text-[10px]">Solicitudes de Adopción</p><p class="text-3xl font-black" id="stat-solicitudes">0</p></div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4">
+                        <div class="size-12 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center"><span class="material-symbols-outlined text-3xl">volunteer_activism</span></div>
+                        <div><p class="text-xs font-bold text-gray-400 uppercase">Padrinazgos</p><p class="text-3xl font-black" id="stat-padrinazgos">0</p></div>
+                    </div>
+                    <div id="card-stats-tienda" class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4">
+                        <div class="size-12 rounded-xl bg-purple-100 text-purple-500 flex items-center justify-center"><span class="material-symbols-outlined text-3xl">shopping_bag</span></div>
+                        <div><p class="text-xs font-bold text-gray-400 uppercase">Productos Tienda</p><p class="text-3xl font-black" id="stat-productos">0</p></div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4">
+                        <div class="size-12 rounded-xl bg-emerald-100 text-emerald-500 flex items-center justify-center"><span class="material-symbols-outlined text-3xl">event</span></div>
+                        <div><p class="text-xs font-bold text-gray-400 uppercase">Eventos</p><p class="text-3xl font-black" id="stat-eventos">0</p></div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4">
+                        <div class="size-12 rounded-xl bg-cyan-100 text-cyan-500 flex items-center justify-center"><span class="material-symbols-outlined text-3xl">group</span></div>
+                        <div><p class="text-xs font-bold text-gray-400 uppercase">Inscripciones a Eventos</p><p class="text-3xl font-black" id="stat-inscripciones">0</p></div>
+                    </div>
+                    <div id="card-stats-reservas" class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4">
+                        <div class="size-12 rounded-xl bg-blue-100 text-blue-500 flex items-center justify-center"><span class="material-symbols-outlined text-3xl">calendar_month</span></div>
+                        <div><p class="text-xs font-bold text-gray-400 uppercase">Reservas Totales</p><p class="text-3xl font-black" id="stat-reservas">0</p></div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4">
+                        <div class="size-12 rounded-xl bg-rose-100 text-rose-500 flex items-center justify-center"><span class="material-symbols-outlined text-3xl">receipt_long</span></div>
+                        <div><p class="text-xs font-bold text-gray-400 uppercase">Pedidos</p><p class="text-3xl font-black" id="stat-pedidos">0</p></div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4">
+                        <div class="size-12 rounded-xl bg-indigo-100 text-indigo-500 flex items-center justify-center"><span class="material-symbols-outlined text-3xl">manage_accounts</span></div>
+                        <div><p class="text-xs font-bold text-gray-400 uppercase">Usuarios</p><p class="text-3xl font-black" id="stat-usuarios">0</p></div>
+                    </div>
+                    <div id="card-stats-comentarios" class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4">
+                        <div class="size-12 rounded-xl bg-orange-100 text-orange-500 flex items-center justify-center"><span class="material-symbols-outlined text-3xl">forum</span></div>
+                        <div><p class="text-xs font-bold text-gray-400 uppercase">Comentarios</p><p class="text-3xl font-black" id="stat-comentarios">0</p></div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 flex flex-col md:flex-row gap-8 items-center">
+                        <div class="w-40 h-40 relative flex items-center justify-center shrink-0"><canvas id="grafica-gatos-estados-dash"></canvas></div>
+                        <div class="flex-1 space-y-4"><h3 class="font-bold text-gray-700 uppercase tracking-widest text-xs">Distribución de Estados</h3><div id="leyenda-grafica-dash" class="grid grid-cols-2 gap-3"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gestión de residentes felinos -->
+            <div id="section-gatos" class="section-content space-y-8">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-3xl font-black">Gatos</h2>
+                    <button data-action="create" data-type="gato" class="bg-primary text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2 transition-all hover:scale-105 active:scale-95 shadow-lg shadow-primary/20">
+                        <span class="material-symbols-outlined">add_circle</span> Añadir Gato
+                    </button>
+                </div>
+
+                <!-- Indicadores de rendimiento de gatos -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-white p-5 rounded-3xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition-all">
+                        <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Total Residentes</span>
+                        <div class="flex items-end justify-between mt-2">
+                            <span class="text-3xl font-black" id="kpi-gatos-total">0</span>
+                            <span class="material-symbols-outlined text-gray-200 text-3xl">pets</span>
+                        </div>
+                    </div>
+                    <div class="bg-white p-5 rounded-3xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition-all border-l-4 border-l-green-500">
+                        <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Adoptados</span>
+                        <div class="flex items-end justify-between mt-2">
+                            <span class="text-3xl font-black text-green-600" id="kpi-gatos-adoptados">0</span>
+                            <span class="material-symbols-outlined text-green-100 text-3xl">home</span>
+                        </div>
+                    </div>
+                    <div class="bg-white p-5 rounded-3xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition-all border-l-4 border-l-orange-500">
+                        <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Buscando Hogar</span>
+                        <div class="flex items-end justify-between mt-2">
+                            <span class="text-3xl font-black text-orange-600" id="kpi-gatos-buscando">0</span>
+                            <span class="material-symbols-outlined text-orange-100 text-3xl">volunteer_activism</span>
+                        </div>
+                    </div>
+                    <div class="bg-white p-5 rounded-3xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition-all border-l-4 border-l-red-500">
+                        <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Casos Urgentes</span>
+                        <div class="flex items-end justify-between mt-2">
+                            <span class="text-3xl font-black text-red-600" id="kpi-gatos-urgentes">0</span>
+                            <span class="material-symbols-outlined text-red-100 text-3xl">priority_high</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                    <div class="p-4 border-b bg-gray-50/50 flex gap-4">
+                        <select id="filtro-gato-estado" class="rounded-lg border-gray-200 text-sm !w-48 shrink-0">
+                            <option value="Todos">Todos los Estados</option>
+                            <option value="En Adopción">En Adopción</option>
+                            <option value="Urgente">Urgente</option>
+                            <option value="Reservado">Reservado</option>
+                            <option value="Adoptado">Adoptado</option>
+                            <option value="Residente VIP">Residente VIP</option>
+                            <option value="No Disponible">No Disponible</option>
+                        </select>
+                        <div class="relative flex-1">
+                            <input type="text" id="filtro-gato-nombre" placeholder="Buscar por nombre..." class="w-full rounded-lg border-gray-200 text-sm">
+                        </div>
+                    </div>
+                    <table class="w-full text-left">
+                        <thead class="bg-gray-50 border-b text-xs font-bold text-gray-400 uppercase">
+                            <tr><th class="p-4">Gato</th><th class="p-4">Estado</th><th class="p-4 text-center">Género</th><th class="p-4 text-right">Acciones</th></tr>
+                        </thead>
+                        <tbody id="lista-gatos-admin"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Sección de adopciones -->
+            <div id="section-adopciones" class="section-content space-y-8">
+                <header class="flex justify-between items-center">
+                    <h2 class="text-3xl font-black">Solicitudes de Adopción</h2>
+                    <div class="flex gap-3">
+                        <select id="filtro-adopcion-estado" class="rounded-lg border-gray-200 text-sm !w-48 shrink-0"><option value="Todos">Todos</option><option value="Pendiente">Pendiente</option></select>
+                        <div class="relative w-64">
+                            <input type="text" id="filtro-adopcion-gato" placeholder="Buscar gato..." class="w-full rounded-lg border-gray-200 text-sm">
+                        </div>
+                    </div>
+                </header>
+                <div class="bg-white rounded-2xl shadow-sm border overflow-hidden">
+                    <table class="w-full text-left">
+                        <thead class="bg-gray-50 border-b text-xs uppercase font-bold text-gray-400">
+                            <tr><th class="p-4">Usuario</th><th class="p-4">Gato</th><th class="p-4">Fecha</th><th class="p-4">Estado</th><th class="p-4">PDF</th><th class="p-4 text-right">Acciones</th></tr>
+                        </thead>
+                        <tbody id="lista-adopciones-admin"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Sección de padrinazgos -->
+            <div id="section-padrinazgos" class="section-content space-y-8">
+                <h2 class="text-3xl font-black">Padrinazgos</h2>
+                <div class="bg-white rounded-2xl shadow-sm border overflow-hidden">
+                    <div class="flex gap-2 p-4 border-b bg-gray-50/30">
+                        <div class="relative flex-1">
+                            <input type="text" id="filtro-padrinazgo-gato" placeholder="Buscar por nombre de gato..." class="w-full rounded-lg border-gray-200 text-sm">
+                        </div>
+                    </div>
+                    <table class="w-full text-left">
+                        <thead class="bg-gray-50 border-b text-xs uppercase font-bold text-gray-400">
+                            <tr><th class="p-4">Padrino</th><th class="p-4">Gato</th><th class="p-4">Cuota</th><th class="p-4">Fechas</th><th class="p-4">Estado</th><th class="p-4 text-right">Acciones</th></tr>
+                        </thead>
+                        <tbody id="lista-padrinazgos-admin"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Sección de tienda -->
+            <div id="section-tienda" class="section-content space-y-8">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-3xl font-black">Tienda</h2>
+                    <button data-action="create" data-type="producto" class="bg-primary text-white px-6 py-2 rounded-xl font-bold">Nuevo Producto</button>
+                </div>
+                <div class="bg-white rounded-2xl shadow-sm border overflow-hidden">
+                    <table class="w-full text-left">
+                        <thead class="bg-gray-50 border-b text-xs uppercase font-bold text-gray-400">
+                            <tr><th class="p-4">Foto</th><th class="p-4">Producto</th><th class="p-4">Precio</th><th class="p-4">Stock</th><th class="p-4 text-right">Acciones</th></tr>
+                        </thead>
+                        <tbody id="lista-productos-admin"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Sección de eventos -->
+            <div id="section-eventos" class="section-content space-y-8">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-3xl font-black">Eventos</h2>
+                    <button data-action="create" data-type="evento" class="bg-primary text-white px-6 py-2 rounded-xl font-bold">Crear Evento</button>
+                </div>
+                <div class="bg-white rounded-2xl shadow-sm border overflow-hidden">
+                    <table class="w-full text-left">
+                        <thead class="bg-gray-50 border-b text-xs uppercase font-bold text-gray-400">
+                            <tr><th class="p-4">Título</th><th class="p-4">Fecha</th><th class="p-4">Categoría</th><th class="p-4">Precio</th><th class="p-4 text-right">Acciones</th></tr>
+                        </thead>
+                        <tbody id="lista-eventos-admin"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Sección de inscripciones -->
+            <div id="section-inscripciones" class="section-content space-y-8">
+                <h2 class="text-3xl font-black">Inscripciones</h2>
+                <div class="bg-white rounded-2xl shadow-sm border overflow-hidden">
+                    <table class="w-full text-left">
+                        <thead class="bg-gray-50 border-b text-xs uppercase font-bold text-gray-400">
+                            <tr><th class="p-4">Usuario</th><th class="p-4">Evento</th><th class="p-4">Pers.</th><th class="p-4">Pago</th><th class="p-4 text-right">Acciones</th></tr>
+                        </thead>
+                        <tbody id="lista-inscripciones-admin"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Sección de reservas -->
+            <div id="section-reservas" class="section-content space-y-8">
+                <h2 class="text-3xl font-black">Reservas</h2>
+                <div class="bg-white rounded-2xl shadow-sm border overflow-hidden">
+                    <table class="w-full text-left">
+                        <thead class="bg-gray-50 border-b text-xs uppercase font-bold text-gray-400">
+                            <tr><th class="p-4">Cliente</th><th class="p-4">Servicio</th><th class="p-4">Fecha/Hora</th><th class="p-4">Pers.</th><th class="p-4">Estado</th><th class="p-4 text-right">Acciones</th></tr>
+                        </thead>
+                        <tbody id="lista-reservas-admin"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Sección de pedidos -->
+            <div id="section-pedidos" class="section-content space-y-8">
+                <h2 class="text-3xl font-black">Pedidos</h2>
+                <div class="bg-white rounded-2xl shadow-sm border overflow-hidden">
+                    <table class="w-full text-left">
+                        <thead class="bg-gray-50 border-b text-xs uppercase font-bold text-gray-400">
+                            <tr><th class="p-4">ID</th><th class="p-4">Cliente</th><th class="p-4">Total</th><th class="p-4">Pago</th><th class="p-4">Estado Pedido</th><th class="p-4 text-right">Acciones</th></tr>
+                        </thead>
+                        <tbody id="lista-pedidos-admin"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Sección de usuarios -->
+            <div id="section-usuarios" class="section-content space-y-8">
+                <h2 class="text-3xl font-black">Usuarios</h2>
+                <div class="bg-white rounded-2xl shadow-sm border overflow-hidden">
+                    <table class="w-full text-left">
+                        <thead class="bg-gray-50 border-b text-xs uppercase font-bold text-gray-400">
+                            <tr><th class="p-4">Usuario</th><th class="p-4">Email/Tel</th><th class="p-4">Registro</th><th class="p-4">Rol</th><th class="p-4 text-right">Acciones</th></tr>
+                        </thead>
+                        <tbody id="lista-usuarios-admin"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Sección de comentarios -->
+            <div id="section-comentarios" class="section-content space-y-8">
+                <h2 class="text-3xl font-black">Comentarios</h2>
+                <div class="bg-white rounded-2xl shadow-sm border overflow-hidden">
+                    <table class="w-full text-left">
+                        <thead class="bg-gray-50 border-b text-xs uppercase font-bold text-gray-400">
+                            <tr><th class="p-4">Usuario</th><th class="p-4">Comentario</th><th class="p-4">Nota</th><th class="p-4">Estado</th><th class="p-4 text-right">Acciones</th></tr>
+                        </thead>
+                        <tbody id="tabla-comentarios-pendientes"></tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal para gestión de gatos -->
+    <div id="modal-gato" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50"><div class="bg-white p-8 rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"><h3 class="text-2xl font-bold mb-6" id="modal-gato-titulo">Gestionar Gato</h3><form id="form-gato" class="grid grid-cols-2 gap-4" novalidate><input type="hidden" id="g-id"><div class="col-span-1 flex flex-col gap-1"><label class="text-xs font-bold uppercase text-gray-400">Nombre</label><input type="text" id="g-nombre" class="rounded-xl border-gray-200" required></div><div class="col-span-1 flex flex-col gap-1"><label class="text-xs font-bold uppercase text-gray-400">Sexo</label><select id="g-sexo" class="rounded-xl border-gray-200" required><option value="Macho">Macho</option><option value="Hembra">Hembra</option></select></div><div class="col-span-1 flex flex-col gap-1"><label class="text-xs font-bold uppercase text-gray-400">Raza</label><input type="text" id="g-raza" class="rounded-xl border-gray-200" required></div><div class="col-span-1 flex flex-col gap-1"><label class="text-xs font-bold uppercase text-gray-400">Color</label><input type="text" id="g-color" class="rounded-xl border-gray-200" required></div><div class="col-span-1 flex flex-col gap-1"><label class="text-xs font-bold uppercase text-gray-400">Nacimiento</label><input type="date" id="g-nacimiento" class="rounded-xl border-gray-200" required></div><div class="col-span-1 flex flex-col gap-1"><label class="text-xs font-bold uppercase text-gray-400">Llegada</label><input type="date" id="g-llegada" class="rounded-xl border-gray-200" required></div><div class="col-span-1 flex flex-col gap-1"><label class="text-xs font-bold uppercase text-gray-400">Estado</label><select id="g-estado" class="rounded-xl border-gray-200" required><option value="En Adopción">En Adopción</option><option value="Urgente">Urgente</option><option value="Reservado">Reservado</option><option value="Adoptado">Adoptado</option><option value="Residente VIP">Residente VIP</option><option value="No Disponible">No Disponible</option></select></div><div class="col-span-1 flex flex-col gap-1"><label class="text-xs font-bold uppercase text-gray-400">Adopción (Fecha)</label><input type="date" id="g-adopcion" class="rounded-xl border-gray-200"></div><div class="col-span-1 flex flex-col gap-1"><label class="text-xs font-bold uppercase text-gray-400">Esterilizado</label><select id="g-esterilizado" class="rounded-xl border-gray-200" required><option value="1">Sí</option><option value="0">No</option></select></div><div class="col-span-1 flex flex-col gap-1"><label class="text-xs font-bold uppercase text-gray-400">Activo Web</label><select id="g-activo" class="rounded-xl border-gray-200" required><option value="1">SÍ</option><option value="0">NO</option></select></div><div class="col-span-2 flex flex-col gap-1"><label class="text-xs font-bold uppercase text-gray-400">Personalidad</label><input type="text" id="g-personalidad" placeholder="Tranquilo, mimoso..." class="rounded-xl border-gray-200" required></div><div class="col-span-2 flex flex-col gap-1"><label class="text-xs font-bold uppercase text-gray-400">Salud</label><input type="text" id="g-salud" placeholder="Vacunado, testado..." class="rounded-xl border-gray-200" required></div><div class="col-span-2 flex flex-col gap-1"><label class="text-xs font-bold uppercase text-gray-400">Historia</label><textarea id="g-historia" class="rounded-xl border-gray-200" rows="3" required></textarea></div><div class="col-span-2 grid grid-cols-3 gap-2"><div class="flex flex-col gap-1"><label class="text-[10px] font-bold uppercase text-gray-400">Apto Perros</label><select id="g-apto-perros" class="rounded-xl border-gray-200 text-xs"><option value="1">SÍ</option><option value="0">NO</option></select></div><div class="flex flex-col gap-1"><label class="text-[10px] font-bold uppercase text-gray-400">Apto Niños</label><select id="g-apto-ninos" class="rounded-xl border-gray-200 text-xs"><option value="1">SÍ</option><option value="0">NO</option></select></div><div class="flex flex-col gap-1"><label class="text-[10px] font-bold uppercase text-gray-400">Apto Gatos</label><select id="g-apto-gatos" class="rounded-xl border-gray-200 text-xs"><option value="1">SÍ</option><option value="0">NO</option></select></div></div><div class="col-span-2 space-y-4 pt-4 border-t border-gray-100 mt-2">
+                        <!-- Carga de imagen principal -->
+                        <div class="flex flex-col gap-1">
+                            <label class="text-xs font-bold uppercase text-gray-400">Imagen Principal (Portada)</label>
+                            <div class="flex gap-3 items-center">
+                                <img id="g-prev-principal" src="/recursos/imagenes/logo.webp" class="size-16 rounded-xl object-cover border border-gray-100 shadow-sm" onerror="this.src='/recursos/imagenes/logo.webp'">
+                                <div class="flex-1">
+                                    <input type="file" id="g-archivo-principal" class="w-full text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-primary file:text-white hover:file:bg-primary/90" accept="image/*">
+                                    <input type="hidden" id="g-imagen-principal-url">
+                                    <p id="txt-nombre-imagen-principal" class="text-[9px] text-gray-400 italic mt-1 font-medium">No hay foto principal seleccionada</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Carga de galería adicional -->
+                        <div class="flex flex-col gap-1 mt-2">
+                            <label class="text-xs font-bold uppercase text-gray-400">Galería de Imágenes Adicionales</label>
+                            <div class="flex gap-2">
+                                <input type="file" id="g-archivo-galeria" class="flex-1 text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-primary file:text-white hover:file:bg-primary/90" accept="image/*" multiple>
+                                <input type="hidden" id="g-galeria-urls">
+                            </div>
+                            <div id="g-galeria-prev" class="flex flex-wrap gap-2 mt-2 min-h-[40px] p-2 bg-gray-50 rounded-xl border border-dashed border-gray-200">
+                                <!-- Miniaturas generadas dinámicamente -->
+                                <p class="text-[9px] text-gray-400 w-full text-center py-2 italic">Sin fotos adicionales</p>
+                            </div>
+                        </div>
+                    </div><div class="col-span-2 flex gap-3 mt-4"><button type="button" data-action="close-modal" data-modal-id="modal-gato" class="flex-1 py-3 text-gray-500 font-bold">Cancelar</button><button type="submit" class="flex-1 py-3 bg-primary text-white font-bold rounded-xl shadow-lg">Guardar</button></div></form></div></div>
+
+    <!-- Modal para gestión de productos -->
+    <div id="modal-producto" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+        <div class="bg-white p-8 rounded-3xl max-w-xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+            <h3 class="text-2xl font-bold mb-6" id="modal-prod-titulo">Producto</h3><form id="form-producto" class="grid grid-cols-2 gap-4" novalidate><input type="hidden" id="p-id"><div class="col-span-2"><label class="text-xs font-bold uppercase text-gray-400">Nombre</label><input type="text" id="p-nombre" class="w-full rounded-xl border-gray-200" required></div><div class="col-span-2"><label class="text-xs font-bold uppercase text-gray-400">Descripción</label><textarea id="p-descripcion" class="w-full rounded-xl border-gray-200" required></textarea></div><div class="col-span-1"><label class="text-xs font-bold uppercase text-gray-400">Precio</label><input type="number" step="0.01" id="p-precio" class="w-full rounded-xl border-gray-200" required></div><div class="col-span-1"><label class="text-xs font-bold uppercase text-gray-400">Stock</label><input type="number" id="p-stock" class="w-full rounded-xl border-gray-200" required></div>                    <div class="col-span-2">
+                        <label class="text-xs font-bold uppercase text-gray-400">Categoría</label>
+                        <select id="p-categoria" class="w-full rounded-xl border-gray-200" required>
+                            <option value="Juguetes">Juguetes</option>
+                            <option value="Ropa">Ropa</option>
+                            <option value="Merchandising">Merchandising</option>
+                            <option value="Muebles">Muebles</option>
+                            <option value="Alimentación">Alimentación</option>
+                        </select>
+                    </div>                <div class="col-span-2 space-y-4">
+                    <!-- Gestión de imagen de portada -->
+                    <div class="flex flex-col gap-1">
+                        <label class="text-xs font-bold uppercase text-gray-400">Imagen Principal (Portada)</label>
+                        <div class="flex gap-3 items-center">
+                            <img id="p-prev-principal" src="/recursos/imagenes/logo.webp" class="size-16 rounded-xl object-cover border border-gray-100 shadow-sm" onerror="this.src='/recursos/imagenes/logo.webp'">
+                            <div class="flex-1">
+                                <input type="file" id="p-archivo-principal" class="w-full text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-primary file:text-white hover:file:bg-primary/90" accept="image/*">
+                                <input type="hidden" id="p-imagen">
+                                <p id="txt-imagen-principal-nombre" class="text-[9px] text-gray-400 italic mt-1 font-medium">No hay foto principal seleccionada</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Gestión de galería adicional -->
+                    <div class="flex flex-col gap-1">
+                        <label class="text-xs font-bold uppercase text-gray-400">Galería de Imágenes Adicionales</label>
+                        <div class="flex gap-2">
+                            <input type="file" id="p-archivo-galeria" class="flex-1 text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-primary file:text-white hover:file:bg-primary/90" accept="image/*" multiple>
+                            <input type="hidden" id="p-galeria-urls-hidden">
+                        </div>
+                        <div id="p-galeria-prev" class="flex flex-wrap gap-2 mt-2 min-h-[40px] p-2 bg-gray-50 rounded-xl border border-dashed border-gray-200">
+                            <!-- Miniaturas de galería -->
+                            <p class="text-[9px] text-gray-400 w-full text-center py-2 italic">Sin fotos en galería</p>
+                        </div>
+                    </div>
+                </div><div class="col-span-2 flex gap-3 mt-4"><button type="button" data-action="close-modal" data-modal-id="modal-producto" class="flex-1 py-3">Cancelar</button><button type="submit" class="flex-1 py-3 bg-primary text-white font-bold rounded-xl shadow-lg">Guardar</button></div></form></div></div>
+
+    <!-- Modal para gestión de eventos -->
+    <div id="modal-evento" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+        <div class="bg-white p-8 rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+            <h3 class="text-2xl font-bold mb-6" id="modal-evento-titulo">Evento</h3><form id="form-evento" class="grid grid-cols-2 gap-4" novalidate><input type="hidden" id="e-id"><div class="col-span-2"><label class="text-xs font-bold uppercase text-gray-400">Título</label><input type="text" id="e-titulo" class="w-full rounded-xl border-gray-200" required></div><div class="col-span-2"><label class="text-xs font-bold uppercase text-gray-400">Descripción</label><textarea id="e-descripcion" class="w-full rounded-xl border-gray-200" required></textarea></div><div class="col-span-1"><label class="text-xs font-bold uppercase text-gray-400">Fecha</label><input type="date" id="e-fecha" class="w-full rounded-xl border-gray-200" required></div><div class="col-span-1"><label class="text-xs font-bold uppercase text-gray-400">Hora</label><input type="time" id="e-hora" class="w-full rounded-xl border-gray-200" required></div><div class="col-span-1"><label class="text-xs font-bold uppercase text-gray-400">Ubicación</label><input type="text" id="e-ubicacion" class="w-full rounded-xl border-gray-200" required></div><div class="col-span-1"><label class="text-xs font-bold uppercase text-gray-400">Categoría</label><select id="e-categoria" class="w-full rounded-xl border-gray-200" required><option value="Taller">Taller</option><option value="Social">Social</option><option value="Charla">Charla</option><option value="Coworking">Coworking</option></select></div><div class="col-span-1"><label class="text-xs font-bold uppercase text-gray-400">Precio</label><input type="number" step="0.01" id="e-precio" class="w-full rounded-xl border-gray-200" required></div>                <div class="col-span-2">
+                    <!-- Gestión de imagen promocional -->
+                    <div class="flex flex-col gap-1">
+                        <label class="text-xs font-bold uppercase text-gray-400">Imagen del Evento</label>
+                        <div class="flex gap-3 items-center">
+                            <img id="e-prev-principal" src="/recursos/imagenes/logo.webp" class="size-16 rounded-xl object-cover border border-gray-100 shadow-sm" onerror="this.src='/recursos/imagenes/logo.webp'">
+                            <div class="flex-1">
+                                <input type="file" id="e-archivo-principal" class="w-full text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-primary file:text-white hover:file:bg-primary/90" accept="image/*">
+                                <input type="hidden" id="e-imagen">
+                                <p id="txt-evento-principal-nombre" class="text-[9px] text-gray-400 italic mt-1 font-medium">No hay imagen seleccionada</p>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="col-span-2 flex gap-3 mt-4"><button type="button" data-action="close-modal" data-modal-id="modal-evento" class="flex-1 py-3">Cancelar</button><button type="submit" class="flex-1 py-3 bg-primary text-white font-bold rounded-xl shadow-lg">Guardar</button></div></form></div></div>
+
+    <!-- Modal para gestión de padrinazgos -->
+    <div id="modal-padrinazgo" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50"><div class="bg-white p-8 rounded-3xl max-w-xl w-full shadow-2xl"><h3 class="text-2xl font-bold mb-6">Gestionar Padrinazgo</h3><form id="form-padrinazgo" class="grid grid-cols-2 gap-4" novalidate><input type="hidden" id="pad-id"><div class="col-span-1"><label class="text-xs font-bold uppercase text-gray-400">Cuota Mensual</label><input type="number" step="0.01" id="pad-cuota" class="w-full rounded-xl border-gray-200" required></div><div class="col-span-1"><label class="text-xs font-bold uppercase text-gray-400">Estado</label><select id="pad-archivado" class="w-full rounded-xl border-gray-200" required><option value="0">ACTIVO</option><option value="1">ARCHIVADO</option></select></div><div class="col-span-1"><label class="text-xs font-bold uppercase text-gray-400">Inicio</label><input type="date" id="pad-inicio" class="w-full rounded-xl border-gray-200" required></div><div class="col-span-1"><label class="text-xs font-bold uppercase text-gray-400">Fin</label><input type="date" id="pad-fin" class="w-full rounded-xl border-gray-200"></div><div class="col-span-2 flex gap-3 mt-4"><button type="button" data-action="close-modal" data-modal-id="modal-padrinazgo" class="flex-1 py-3">Cancelar</button><button type="submit" class="flex-1 py-3 bg-primary text-white font-bold rounded-xl shadow-lg">Guardar</button></div></form></div></div>
+
+    <!-- Modal para gestión de inscripciones -->
+    <div id="modal-inscripcion" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50"><div class="bg-white p-8 rounded-3xl max-w-xl w-full shadow-2xl"><h3 class="text-2xl font-bold mb-6">Inscripción</h3><form id="form-inscripcion" class="grid grid-cols-2 gap-4" novalidate><input type="hidden" id="i-id"><div><label class="text-xs font-bold uppercase text-gray-400">Pago</label><select id="i-pago" class="w-full rounded-xl border-gray-200" required><option value="Pendiente">Pendiente</option><option value="Pagado">Pagado</option></select></div><div><label class="text-xs font-bold uppercase text-gray-400">Personas</label><input type="number" id="i-personas" class="w-full rounded-xl border-gray-200" required></div><div class="col-span-2"><label class="text-xs font-bold uppercase text-gray-400">Observaciones</label><textarea id="i-observaciones" class="w-full rounded-xl border-gray-200"></textarea></div><div class="col-span-2 flex gap-3 mt-4"><button type="button" data-action="close-modal" data-modal-id="modal-inscripcion" class="flex-1 py-3">Cancelar</button><button type="submit" class="flex-1 py-3 bg-primary text-white font-bold rounded-xl shadow-lg">Guardar</button></div></form></div></div>
+
+    <!-- Modal para gestión de adopciones -->
+    <div id="modal-adopcion" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50"><div class="bg-white p-8 rounded-3xl max-w-lg w-full shadow-2xl"><h3 class="text-2xl font-bold mb-6">Gestionar Adopción</h3><form id="form-gestion-adopcion" class="space-y-4" novalidate><input type="hidden" id="adop-id"><div><label class="text-xs font-bold uppercase text-gray-400">Estado</label><select id="adop-estado" class="w-full rounded-xl border-gray-200" required><option value="Pendiente">Pendiente</option><option value="En Proceso">En Proceso</option><option value="Aceptada">Aceptada</option><option value="Rechazada">Rechazada</option></select></div><div><label class="text-xs font-bold uppercase text-gray-400">Notas</label><textarea id="adop-motivo" class="w-full rounded-xl border-gray-200" required></textarea></div><div class="flex gap-3 mt-4"><button type="button" data-action="close-modal" data-modal-id="modal-adopcion" class="flex-1 py-3">Cancelar</button><button type="submit" class="flex-1 py-3 bg-primary text-white font-bold rounded-xl shadow-lg">Actualizar</button></div></form></div></div>
+
+    <!-- Modal para edición de pedidos -->
+    <div id="modal-pedido-edit" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50"><div class="bg-white p-8 rounded-3xl max-w-xl w-full shadow-2xl"><h3 class="text-2xl font-bold mb-6">Editar Pedido</h3><form id="form-pedido-edit" class="grid grid-cols-2 gap-4" novalidate><input type="hidden" id="pe-id"><div><label class="text-xs font-bold uppercase text-gray-400">Total</label><input type="number" step="0.01" id="pe-total" class="w-full rounded-xl border-gray-200" required></div><div><label class="text-xs font-bold uppercase text-gray-400">Pago</label><select id="pe-pagado" class="w-full rounded-xl border-gray-200" required><option value="1">PAGADO</option><option value="0">PENDIENTE</option></select></div><div class="col-span-2"><label class="text-xs font-bold uppercase text-gray-400">Estado Pedido</label><select id="pe-estado" class="w-full rounded-xl border-gray-200" required><option value="Preparando">Preparando</option><option value="Listo para recoger">Listo para recoger</option><option value="Entregado">Entregado</option><option value="Cancelado">Cancelado</option></select></div><div class="col-span-2"><label class="text-xs font-bold uppercase text-gray-400">Dirección</label><textarea id="pe-direccion" class="w-full rounded-xl border-gray-200"></textarea></div><div class="col-span-2 flex gap-3 mt-4"><button type="button" data-action="close-modal" data-modal-id="modal-pedido-edit" class="flex-1 py-3">Cancelar</button><button type="submit" class="flex-1 py-3 bg-primary text-white font-bold rounded-xl shadow-lg">Guardar</button></div></form></div></div>
+
+    <!-- Modal para visualización de detalles de pedido -->
+    <div id="modal-detalle-pedido" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50"><div class="bg-white p-8 rounded-3xl max-w-xl w-full shadow-2xl"><div class="flex justify-between items-center mb-6"><h3 class="text-2xl font-black italic">Detalle del <span class="text-primary">Pedido</span></h3><button data-action="close-modal" data-modal-id="modal-detalle-pedido" class="text-gray-400 hover:text-red-500"><span class="material-symbols-outlined">close</span></button></div><div id="detalle-pedido-contenido" class="space-y-4 max-h-[60vh] overflow-y-auto pr-2"></div><div class="mt-8 pt-6 border-t flex justify-between items-center"><span class="text-sm font-bold text-gray-400 uppercase">Total</span><span id="detalle-pedido-total" class="text-2xl font-black text-primary">0.00€</span></div></div></div>
+
+    <!-- Modal para gestión de perfiles de usuario -->
+    <div id="modal-usuario" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50"><div class="bg-white p-8 rounded-3xl max-w-xl w-full shadow-2xl"><h3 class="text-2xl font-bold mb-6">Usuario</h3><form id="form-usuario" class="grid grid-cols-2 gap-4" novalidate><input type="hidden" id="u-id"><div><label class="text-xs font-bold uppercase text-gray-400">Nombre</label><input type="text" id="u-nombre" class="w-full rounded-xl border-gray-200" required></div><div><label class="text-xs font-bold uppercase text-gray-400">Apellidos</label><input type="text" id="u-apellidos" class="w-full rounded-xl border-gray-200" required></div><div class="col-span-2"><label class="text-xs font-bold uppercase text-gray-400">Email</label><input type="email" id="u-email" class="w-full rounded-xl border-gray-200" required></div><div><label class="text-xs font-bold uppercase text-gray-400">Teléfono</label><input type="text" id="u-telefono" class="w-full rounded-xl border-gray-200"></div><div><label class="text-xs font-bold uppercase text-gray-400">Rol</label><select id="u-rol" class="w-full rounded-xl border-gray-200" required><option value="1">ADMIN</option><option value="2">EMPLEADO</option><option value="3">PADRINO</option><option value="4">MIEMBRO</option></select></div><div class="col-span-2 flex gap-3 mt-4"><button type="button" data-action="close-modal" data-modal-id="modal-usuario" class="flex-1 py-3">Cancelar</button><button type="submit" class="flex-1 py-3 bg-primary text-white font-bold rounded-xl shadow-lg">Guardar</button></div></form></div></div>
+
+    <!-- Modal para gestión de reservas -->
+    <div id="modal-reserva" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50"><div class="bg-white p-8 rounded-3xl max-w-xl w-full shadow-2xl"><h3 class="text-2xl font-bold mb-6">Reserva</h3><form id="form-reserva" class="grid grid-cols-2 gap-4" novalidate><input type="hidden" id="r-id"><div><label class="text-xs font-bold uppercase text-gray-400">Fecha</label><input type="date" id="r-fecha" class="w-full rounded-xl border-gray-200" required></div><div><label class="text-xs font-bold uppercase text-gray-400">Hora</label><input type="time" id="r-hora" class="w-full rounded-xl border-gray-200" required></div><div><label class="text-xs font-bold uppercase text-gray-400">Pers.</label><input type="number" id="r-personas" class="w-full rounded-xl border-gray-200" required></div><div><label class="text-xs font-bold uppercase text-gray-400">Pago</label><select id="r-pagado" class="w-full rounded-xl border-gray-200" required><option value="1">PAGADO</option><option value="0">PENDIENTE</option></select></div><div class="col-span-2"><label class="text-xs font-bold uppercase text-gray-400">Estado</label><select id="r-estado" class="w-full rounded-xl border-gray-200" required><option value="Pendiente">Pendiente</option><option value="Confirmada">Confirmada</option><option value="Cancelada">Cancelada</option><option value="Completada">Completada</option></select></div><div class="col-span-2"><label class="text-xs font-bold uppercase text-gray-400">Observaciones</label><textarea id="r-observaciones" class="w-full rounded-xl border-gray-200" rows="2"></textarea></div><div class="col-span-2 flex gap-3 mt-4"><button type="button" data-action="close-modal" data-modal-id="modal-reserva" class="flex-1 py-3">Cancelar</button><button type="submit" class="flex-1 py-3 bg-primary text-white font-bold rounded-xl shadow-lg">Guardar</button></div></form></div></div>
+
+    <!-- Modales globales de notificación y confirmación -->
+    <div id="modal-feedback" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-[100]"><div class="bg-white p-8 rounded-3xl max-w-sm w-full shadow-2xl text-center"><div id="feedback-icono-contenedor" class="size-20 rounded-full mx-auto mb-6 flex items-center justify-center"><span id="feedback-icono" class="material-symbols-outlined text-5xl">check_circle</span></div><h3 id="feedback-titulo" class="text-2xl font-black mb-2">Completado</h3><p id="feedback-mensaje" class="text-gray-500 mb-8 italic text-sm"></p><button data-action="close-modal" data-modal-id="modal-feedback" class="w-full py-4 bg-gray-900 text-white font-bold rounded-2xl">Entendido</button></div></div>
+    <div id="modal-confirmacion" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-[100]"><div class="bg-white p-8 rounded-3xl max-w-sm w-full shadow-2xl text-center"><div class="size-20 rounded-full bg-red-100 text-red-500 mx-auto mb-6 flex items-center justify-center"><span class="material-symbols-outlined text-5xl">warning</span></div><h3 id="confirm-titulo" class="text-2xl font-black mb-2">¿Estás seguro?</h3><p id="confirm-mensaje" class="text-gray-500 mb-8 italic text-sm"></p><div class="flex gap-3"><button data-action="close-modal" data-modal-id="modal-confirmacion" class="flex-1 py-4 bg-gray-100 text-gray-500 font-bold rounded-2xl">Cancelar</button><button id="btn-confirmar-accion" class="flex-1 py-4 bg-red-500 text-white font-bold rounded-2xl shadow-lg">Eliminar</button></div></div></div>
+
+    <script src="/components/loader.js"></script>
+    <script src="admin.js" type="module"></script>
+</body>
+</html>

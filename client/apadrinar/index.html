@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Apadrina un Michi | Catfeina</title>
+    <link rel="icon" type="image/svg+xml" href="/recursos/imagenes/logo-flavicon.svg">
+    <link rel="preload" href="/recursos/fuentes/Waterlily.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/recursos/css/estilos-globales.css">
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="/recursos/js/tema-tailwind.js"></script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-fondo-claro dark:bg-fondo-oscuro font-display text-texto-principal dark:text-gray-100 overflow-x-hidden">
+    <div id="nav-placeholder"></div>
+
+    <main class="flex-grow">
+        <!-- Cabecera de la sección de apadrinamiento -->
+        <header class="w-full bg-[#fdfaf7] dark:bg-[#150f0a] pt-16 pb-6 px-4 relative overflow-hidden text-center">
+            <div class="absolute inset-0 opacity-25 pointer-events-none">
+                <img src="/recursos/imagenes/evento-clase-aprendizaje-niños.webp"
+                    class="w-full h-full object-cover object-center">
+            </div>
+
+            <div class="max-w-4xl mx-auto relative z-10 flex flex-col gap-2">
+                <h1 class="font-waterlily text-5xl md:text-7xl text-principal leading-none tracking-normal">
+                    Hazte <span class="text-[#181511] dark:text-white italic">Padrino</span>
+                </h1>
+                <p
+                    class="text-sm md:text-base text-texto-secundario dark:text-gray-400 font-medium max-w-xl mx-auto leading-relaxed">
+                    Cambia una vida <span class="font-bold">sin llevarla a casa</span>. Tu apoyo garantiza su bienestar
+                    mientras esperan su hogar definitivo.
+                </p>
+            </div>
+        </header>
+
+        <!-- Funcionamiento del programa de apoyo -->
+        <section class="py-20 bg-white dark:bg-[#1a120b] border-y border-gray-100 dark:border-gray-800">
+            <div class="max-w-6xl mx-auto px-4 sm:px-10">
+                <div class="text-center mb-16">
+                    <div
+                        class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-principal/20 text-principal font-black text-[10px] uppercase tracking-[0.2em] mb-4">
+                        <span class="material-symbols-outlined text-sm">info</span>
+                        Guía de Ayuda
+                    </div>
+                    <h2
+                        class="text-3xl md:text-5xl font-black text-texto-principal dark:text-white tracking-tight leading-tight">
+                        ¿Cómo funciona el <span class="text-principal italic">apadrinamiento</span>?
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Selección del residente -->
+                    <div
+                        class="flex flex-col gap-4 rounded-[2.5rem] border border-gray-100 dark:border-white/5 bg-white dark:bg-[#1f1b16] p-7 hover:shadow-2xl transition-all duration-500 relative group">
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-10 h-10 rounded-xl bg-principal text-texto-principal flex items-center justify-center shadow-md group-hover:rotate-3 transition-transform shrink-0">
+                                <span class="material-symbols-outlined text-xl">pets</span>
+                            </div>
+                            <h3
+                                class="text-texto-principal dark:text-white text-base font-black uppercase tracking-tight leading-none">
+                                1. Elige a tu michi</h3>
+                        </div>
+                        <p class="text-sm text-texto-secundario dark:text-gray-400 leading-relaxed font-medium pl-14">
+                            Navega por los perfiles de nuestros residentes y conecta con tu compañero ideal.
+                        </p>
+                    </div>
+
+                    <!-- Elección de la modalidad de suscripción -->
+                    <div
+                        class="flex flex-col gap-4 rounded-[2.5rem] border border-gray-100 dark:border-white/5 bg-principal/5 dark:bg-principal/10 p-7 hover:shadow-2xl transition-all duration-500 relative group scale-105 shadow-xl z-10">
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-10 h-10 rounded-xl bg-principal text-texto-principal flex items-center justify-center shadow-md group-hover:-rotate-3 transition-transform shrink-0">
+                                <span class="material-symbols-outlined text-xl">credit_card</span>
+                            </div>
+                            <h3
+                                class="text-texto-principal dark:text-white text-base font-black uppercase tracking-tight leading-none">
+                                2. Elige tu plan</h3>
+                        </div>
+                        <p class="text-sm text-texto-secundario dark:text-gray-400 leading-relaxed font-medium pl-14">
+                            Desde 5€ al mes puedes marcar la diferencia. Elige el nivel que mejor se adapte a ti.
+                        </p>
+                    </div>
+
+                    <!-- Recepción de beneficios exclusivos -->
+                    <div
+                        class="flex flex-col gap-4 rounded-[2.5rem] border border-gray-100 dark:border-white/5 bg-white dark:bg-[#1f1b16] p-7 hover:shadow-2xl transition-all duration-500 relative group">
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-10 h-10 rounded-xl bg-principal text-texto-principal flex items-center justify-center shadow-md group-hover:rotate-3 transition-transform shrink-0">
+                                <span class="material-symbols-outlined text-xl">favorite</span>
+                            </div>
+                            <h3
+                                class="text-texto-principal dark:text-white text-base font-black uppercase tracking-tight leading-none">
+                                3. Recibe amor</h3>
+                        </div>
+                        <p class="text-sm text-texto-secundario dark:text-gray-400 leading-relaxed font-medium pl-14">
+                            Disfruta de beneficios exclusivos y mantente al día de los progresos de tu ahijado.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Resolución de dudas comunes -->
+                <div class="max-w-3xl mx-auto mt-24">
+                    <div class="text-center mb-10">
+                        <h3
+                            class="text-xl font-black text-texto-principal dark:text-white uppercase tracking-widest italic">
+                            Preguntas <span class="text-principal">Frecuentes</span></h3>
+                    </div>
+                    <div class="space-y-3">
+                        <div
+                            class="rounded-3xl border border-gray-100 dark:border-white/5 bg-gray-50/50 dark:bg-white/5 overflow-hidden">
+                            <button
+                                class="pregunta-faq w-full flex justify-between items-center p-6 text-left hover:bg-principal/5 transition-colors group">
+                                <span
+                                    class="text-sm font-black text-texto-principal dark:text-white uppercase tracking-tight">¿Qué
+                                    ocurre si adoptan al gato que apadrino?</span>
+                                <span
+                                    class="material-symbols-outlined text-principal group-hover:rotate-180 transition-transform">expand_more</span>
+                            </button>
+                            <div class="respuesta-faq max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                                <p class="p-6 pt-0 text-sm text-texto-secundario dark:text-gray-400 font-medium leading-relaxed">
+                                    ¡Es la mejor noticia posible! Si tu ahijado es adoptado, te avisaremos de inmediato
+                                    por correo electrónico. Podrás decidir si quieres trasladar tu apadrinamiento a otro
+                                    gato que lo necesite o simplemente celebrar su nuevo hogar.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-y-3">
+                        <div
+                            class="rounded-3xl border border-gray-100 dark:border-white/5 bg-gray-50/50 dark:bg-white/5 overflow-hidden">
+                            <button
+                                class="pregunta-faq w-full flex justify-between items-center p-6 text-left hover:bg-principal/5 transition-colors group">
+                                <span
+                                    class="text-sm font-black text-texto-principal dark:text-white uppercase tracking-tight">¿A
+                                    qué se destina exactamente mi aportación mensual?</span>
+                                <span
+                                    class="material-symbols-outlined text-principal group-hover:rotate-180 transition-transform">expand_more</span>
+                            </button>
+                            <div class="respuesta-faq max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                                <p class="p-6 pt-0 text-sm text-texto-secundario dark:text-gray-400 font-medium leading-relaxed">
+                                    Tu ayuda se destina íntegramente al bienestar de tu ahijado: desde su alimentación
+                                    de alta calidad y arenas, hasta sus vacunas, desparasitaciones y cualquier
+                                    tratamiento veterinario que pueda necesitar. Si el gato tiene sus necesidades
+                                    cubiertas, el excedente ayuda a mantener el refugio para otros compañeros.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-y-3">
+                        <div
+                            class="rounded-3xl border border-gray-100 dark:border-white/5 bg-gray-50/50 dark:bg-white/5 overflow-hidden">
+                            <button
+                                class="pregunta-faq w-full flex justify-between items-center p-6 text-left hover:bg-principal/5 transition-colors group">
+                                <span
+                                    class="text-sm font-black text-texto-principal dark:text-white uppercase tracking-tight">¿Existe
+                                    un compromiso de permanencia?</span>
+                                <span
+                                    class="material-symbols-outlined text-principal group-hover:rotate-180 transition-transform">expand_more</span>
+                            </button>
+                            <div class="respuesta-faq max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                                <p class="p-6 pt-0 text-sm text-texto-secundario dark:text-gray-400 font-medium leading-relaxed">
+                                    No hay ninguna permanencia. Puedes ayudar durante el tiempo que desees o puedas.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-y-3">
+                        <div
+                            class="rounded-3xl border border-gray-100 dark:border-white/5 bg-gray-50/50 dark:bg-white/5 overflow-hidden">
+                            <button
+                                class="pregunta-faq w-full flex justify-between items-center p-6 text-left hover:bg-principal/5 transition-colors group">
+                                <span
+                                    class="text-sm font-black text-texto-principal dark:text-white uppercase tracking-tight">¿Puedo
+                                    cancelar mi suscripción en cualquier momento?</span>
+                                <span
+                                    class="material-symbols-outlined text-principal group-hover:rotate-180 transition-transform">expand_more</span>
+                            </button>
+                            <div class="respuesta-faq max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                                <p class="p-6 pt-0 text-sm text-texto-secundario dark:text-gray-400 font-medium leading-relaxed">
+                                    ¡Claro que sí! No tienes ningún compromiso de permanencia. Sin embargo, para que la
+                                    cancelación sea efectiva antes del siguiente cobro, debes solicitárnoslo antes del
+                                    día 1 del mes siguiente.
+
+                                    Ten en cuenta que, una vez realizado el ingreso mensual, este no es reembolsable y
+                                    tu apadrinamiento seguirá activo durante todo ese mes natural para asegurar el
+                                    bienestar de tu ahijado.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Catálogo de gatos en espera de apoyo -->
+        <section class="py-20 bg-[#fdfaf7] dark:bg-[#150f0a]" id="gatos-seccion">
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-5xl font-black text-texto-principal dark:text-white tracking-tight">
+                        Gatos esperando <span class="text-principal italic">padrino</span></h2>
+                </div>
+                <div id="contenedor-gatos-padrinos" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="col-span-full py-20 text-center animate-pulse">
+                        <span class="material-symbols-outlined text-4xl text-principal mb-4">refresh</span>
+                        <p class="text-gray-400 font-bold uppercase text-xs tracking-widest">Buscando a nuestros
+                            residentes...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="/components/loader.js"></script>
+    <script src="apadrinar.js" type="module"></script>
+</body>
+
+</html>

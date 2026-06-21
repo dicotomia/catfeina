@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Finalizar Reserva | Catfeina</title>
+    <link rel="icon" type="image/svg+xml" href="/recursos/imagenes/logo-flavicon.svg">
+    <link rel="stylesheet" href="/recursos/css/estilos-globales.css">
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="/recursos/js/tema-tailwind.js"></script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        ::placeholder { color: #9ca3af; opacity: 1; font-family: inherit; }
+        .dark ::placeholder { color: #6b7280; }
+        label { margin-left: 0.5rem; margin-bottom: 0.25rem; display: block; }
+    </style>
+</head>
+
+<body class="bg-fondo-claro dark:bg-fondo-oscuro font-display text-texto-principal dark:text-gray-100 min-h-screen flex flex-col">
+
+    <main class="flex-grow py-8 px-4 sm:px-6 lg:px-8 relative overflow-hidden flex items-center justify-center">
+        <!-- Control de navegación hacia la página de inicio -->
+        <a href="/" class="absolute top-8 left-8 z-50 flex items-center gap-2 text-texto-secundario hover:text-principal font-bold transition-colors group">
+            <span class="material-symbols-outlined group-hover:-translate-x-1 transition-transform">arrow_back</span>
+            <span class="text-xs uppercase tracking-widest">Volver a la web</span>
+        </a>
+
+        <div class="absolute -top-24 -left-24 w-96 h-96 bg-principal/10 rounded-full blur-[100px] pointer-events-none"></div>
+        <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-principal/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div id="contenedor-formulario" class="max-w-5xl w-full relative z-10 opacity-0 transition-opacity duration-500">
+            
+            <div class="mb-6 flex flex-col md:flex-row items-center gap-4 text-center md:text-left">
+                <div id="icono-tipo" class="w-14 h-14 rounded-2xl bg-principal text-texto-principal flex items-center justify-center shadow-lg shadow-principal/30 rotate-3">
+                    <span class="material-symbols-outlined text-2xl font-black">calendar_month</span>
+                </div>
+                <div>
+                    <h1 id="titulo-reserva" class="text-2xl md:text-4xl font-black tracking-tight text-texto-principal dark:text-white leading-none">Finalizar <span class="text-principal italic">Reserva</span></h1>
+                    <p id="subtitulo-reserva" class="text-xs md:text-sm text-texto-secundario dark:text-gray-400 font-medium mt-1">Confirma tu momento de relax en Catfeina.</p>
+                </div>
+            </div>
+
+            <div class="bg-white dark:bg-[#1f1b16] rounded-[3rem] shadow-2xl overflow-hidden flex flex-col lg:flex-row border border-gray-100 dark:border-white/5">
+                <div class="flex-1 p-6 md:p-10 flex flex-col gap-6">
+                    <form id="form-final-reserva" class="flex flex-col gap-4" novalidate>
+                        <input type="hidden" id="tipo_reserva" name="tipo_reserva" value="">
+
+                        <!-- Ficha del gato para solicitudes de apadrinamiento -->
+                        <div id="info-gato-apadrinar" class="hidden animate-entrada">
+                            <div class="bg-principal/5 dark:bg-principal/10 rounded-[2.5rem] p-6 border-2 border-dashed border-principal/30 flex flex-col md:flex-row gap-6 items-center">
+                                <div class="w-32 h-32 rounded-[2rem] overflow-hidden shadow-xl shrink-0 border-4 border-white dark:border-[#1f1b16] rotate-3">
+                                    <img id="img-gato-padrino" src="" class="w-full h-full object-cover">
+                                </div>
+                                <div class="flex-1 text-center md:text-left">
+                                    <div class="flex items-center gap-2 justify-center md:justify-start mb-1">
+                                        <span class="text-[10px] font-black uppercase tracking-widest text-principal">Vas a apadrinar a:</span>
+                                    </div>
+                                    <h3 id="nombre-gato-padrino" class="text-3xl font-black text-texto-principal dark:text-white leading-none">Cargando...</h3>
+                                    <p id="desc-gato-padrino" class="text-xs text-texto-secundario dark:text-gray-400 font-medium mt-2 leading-relaxed italic">"Gracias por ayudarme a seguir rascando y durmiendo feliz."</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                            <div class="flex flex-col gap-1.5">
+                                <div class="flex justify-between items-end ml-2">
+                                    <label class="text-[9px] font-black uppercase tracking-[0.2em] text-gray-400">¿Cuándo vienes?</label>
+                                </div>
+                                <input required name="fecha" id="input-fecha" type="date" />
+                            </div>
+                            <div class="flex flex-col gap-1.5" id="contenedor-hora">
+                                <label class="text-[9px] font-black uppercase tracking-[0.2em] text-gray-400">¿A qué hora?</label>
+                                <select name="hora" id="input-hora">
+                                    <option value="10:00:00">10:00 AM</option>
+                                    <option value="11:00:00">11:00 AM</option>
+                                    <option value="12:00:00">12:00 PM</option>
+                                    <option value="13:00:00">01:00 PM</option>
+                                    <option value="16:00:00">04:00 PM</option>
+                                    <option value="17:00:00">05:00 PM</option>
+                                    <option value="18:00:00">06:00 PM</option>
+                                    <option value="19:00:00">07:00 PM</option>
+                                    <option value="20:00:00">08:00 PM</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col gap-1.5" id="seccion-plan">
+                            <label class="text-[9px] font-black uppercase tracking-[0.2em] text-gray-400">Plan elegido</label>
+                            
+                            <!-- Modalidades de acceso para servicios estándar -->
+                            <div class="flex flex-wrap gap-1.5" id="planes-estandar">
+                                <label class="flex-1 min-w-[80px] cursor-pointer">
+                                    <input checked="" class="peer sr-only" name="plan" type="radio" value="estandar" />
+                                    <div id="etiqueta-plan-base" class="rounded-lg border border-gray-100 dark:border-white/10 bg-gray-50/50 dark:bg-white/5 p-2 text-center text-[9px] font-black uppercase tracking-widest peer-checked:border-principal peer-checked:bg-principal/10 peer-checked:text-principal transition-all">
+                                        Nómada
+                                    </div>
+                                </label>
+                                <label class="flex-1 min-w-[80px] cursor-pointer hidden" id="opcion-team">
+                                    <input class="peer sr-only" name="plan" type="radio" value="grupal" />
+                                    <div class="rounded-lg border border-gray-100 dark:border-white/10 bg-gray-50/50 dark:bg-white/5 p-2 text-center text-[9px] font-black uppercase tracking-widest peer-checked:border-principal peer-checked:bg-principal/10 peer-checked:text-principal transition-all">
+                                        Grupal
+                                    </div>
+                                </label>
+                                <label class="flex-1 min-w-[80px] cursor-pointer hidden" id="opcion-dia">
+                                    <input class="peer sr-only" name="plan" type="radio" value="diario" />
+                                    <div class="rounded-lg border border-gray-100 dark:border-white/10 bg-gray-50/50 dark:bg-white/5 p-2 text-center text-[9px] font-black uppercase tracking-widest peer-checked:border-principal peer-checked:bg-principal/10 peer-checked:text-principal transition-all">
+                                        Diario
+                                    </div>
+                                </label>
+                                <label class="flex-1 min-w-[80px] cursor-pointer hidden" id="opcion-mes">
+                                    <input class="peer sr-only" name="plan" type="radio" value="residente" />
+                                    <div class="rounded-lg border border-gray-100 dark:border-white/10 bg-gray-50/50 dark:bg-white/5 p-2 text-center text-[9px] font-black uppercase tracking-widest peer-checked:border-principal peer-checked:bg-principal/10 peer-checked:text-principal transition-all">
+                                        Residente
+                                    </div>
+                                </label>
+                            </div>
+
+                            <!-- Modalidades de suscripción para apadrinamiento -->
+                            <div class="flex flex-wrap gap-2 hidden" id="planes-apadrinar">
+                                <label class="flex-1 cursor-pointer"><input checked="" class="peer sr-only" name="plan_apadrinar" type="radio" value="curioso" /><div class="h-full rounded-xl border border-gray-100 dark:border-white/10 bg-gray-50/50 dark:bg-white/5 p-2 text-center peer-checked:border-principal peer-checked:bg-principal/5 peer-checked:text-principal transition-all"><p class="text-[7px] font-black uppercase tracking-widest opacity-60">Curioso</p><p class="text-sm font-black">5€</p></div></label>
+                                <label class="flex-1 cursor-pointer"><input class="peer sr-only" name="plan_apadrinar" type="radio" value="amigo" /><div class="h-full rounded-xl border border-gray-100 dark:border-white/10 bg-gray-50/50 dark:bg-white/5 p-2 text-center peer-checked:border-principal peer-checked:bg-principal/5 peer-checked:text-principal transition-all"><p class="text-[7px] font-black uppercase tracking-widest opacity-60">Amigo</p><p class="text-sm font-black">10€</p></div></label>
+                                <label class="flex-1 cursor-pointer"><input class="peer sr-only" name="plan_apadrinar" type="radio" value="familia" /><div class="h-full rounded-xl border border-gray-100 dark:border-white/10 bg-gray-50/50 dark:bg-white/5 p-2 text-center peer-checked:border-principal peer-checked:bg-principal/5 peer-checked:text-principal transition-all"><p class="text-[7px] font-black uppercase tracking-widest opacity-60">Familia</p><p class="text-sm font-black">25€</p></div></label>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="flex flex-col gap-1.5" id="seccion-personas">
+                                <label class="text-[9px] font-black uppercase tracking-[0.2em] text-gray-400 ml-2">¿Cuántos sois? <span id="hint-personas" class="hidden text-principal italic">(Min. 4)</span></label>
+                                <input required name="num_personas" id="input-personas" type="number" min="1" max="10" value="1" />
+                            </div>
+                            <div class="flex flex-col gap-1.5" id="seccion-horas">
+                                <label class="text-[9px] font-black uppercase tracking-[0.2em] text-gray-400 ml-2">¿Cuánto tiempo?</label>
+                                <select required name="tiempo_horas" id="input-horas">
+                                    <option value="0.5">30 minutos</option>
+                                    <option value="1" selected>1 hora</option>
+                                    <option value="1.5">1:30 horas</option>
+                                    <option value="2">2 horas</option>
+                                    <option value="2.5">2:30 horas</option>
+                                    <option value="3">3 horas</option>
+                                    <option value="4">4 horas</option>
+                                    <option value="5">5 horas</option>
+                                </select>
+                                <p id="aviso-tiempo" class="hidden text-[10px] text-principal font-bold mt-1 px-2 leading-tight">
+                                    Para asegurar que más personas puedan disfrutar de la experiencia, no se permiten reservas de más de 2 horas.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col gap-4 pt-3 border-t border-gray-100 dark:border-white/5">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="flex flex-col gap-1.5">
+                                    <input required name="nombre" id="input-nombre" placeholder="Nombre completo" type="text" />
+                                </div>
+                                <div class="flex flex-col gap-1.5">
+                                    <input required name="telefono" id="input-telefono" placeholder="Teléfono" type="tel" />
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-1.5">
+                                <input required name="email" id="input-email" placeholder="Tu Email" type="email" />
+                            </div>
+                        </div>
+
+                        <!-- Aceptación obligatoria de las normas de convivencia -->
+                        <div id="contenedor-reglas" class="flex flex-col gap-2 mt-2">
+                            <span id="error-reglas" class="text-[9px] text-red-500 font-black uppercase hidden ml-2 italic">Aceptación obligatoria</span>
+                            <div class="flex items-center gap-3 p-4 bg-red-50 dark:bg-red-900/10 rounded-2xl border border-red-100 dark:border-red-900/20 shadow-inner">
+                                <input type="checkbox" id="check-reglas" disabled class="size-4 rounded text-principal focus:ring-principal cursor-not-allowed opacity-50 border-2 border-gray-300 flex-shrink-0">
+                                <label for="check-reglas" class="text-[10px] md:text-[11px] font-bold leading-none text-texto-principal dark:text-gray-200">
+                                    He leído y acepto las <button id="btn-abrir-reglas" type="button" class="text-principal font-black underline hover:text-principal-oscuro transition-colors">normas de convivencia</button>. 
+                                    <span class="text-red-600 dark:text-red-400 font-black uppercase tracking-tighter ml-1">La lectura es obligatoria</span> 
+                                    <span class="text-black dark:text-white font-black uppercase tracking-tighter">para continuar</span>.
+                                </label>
+                            </div>
+                        </div>
+
+                        <button type="submit" id="btn-confirmar-final" class="w-full py-4 bg-principal hover:bg-principal/90 text-texto-principal font-black rounded-2xl transition-all shadow-xl uppercase tracking-[0.2em] text-[10px]">CONFIRMAR RESERVA</button>
+                    </form>
+                </div>
+
+
+                <div class="w-full lg:w-72 bg-gray-50 dark:bg-white/5 p-6 md:p-10 border-l border-gray-100 dark:border-white/5 flex flex-col gap-6">
+                    <div><h3 class="text-[9px] font-black uppercase tracking-[0.2em] text-gray-400 mb-4">Información</h3><div class="space-y-4"><div class="flex gap-3"><div class="w-8 h-8 rounded-lg bg-white dark:bg-white/5 flex items-center justify-center shadow-sm shrink-0"><span class="material-symbols-outlined text-principal text-sm">location_on</span></div><div class="flex flex-col"><span class="text-[8px] font-black uppercase tracking-widest text-gray-400">Localización</span><span class="text-[10px] font-bold">Córdoba, Tendillas</span></div></div><div class="flex gap-3"><div class="w-8 h-8 rounded-lg bg-white dark:bg-white/5 flex items-center justify-center shadow-sm shrink-0"><span class="material-symbols-outlined text-principal text-sm">schedule</span></div><div class="flex flex-col"><span class="text-[8px] font-black uppercase tracking-widest text-gray-400">Horario</span><span id="horario-texto" class="text-[10px] font-bold">L-V: 8:00 - 20:00</span></div></div></div></div>
+                    <div class="mt-auto p-5 bg-white dark:bg-black/20 rounded-[2rem] border border-gray-100 dark:border-white/5 shadow-sm"><p class="text-[8px] font-black text-principal uppercase tracking-widest mb-2">Tu Selección</p><div id="resumen-tipo" class="space-y-1"><p class="text-xs font-black leading-tight italic">Cargando...</p></div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ventana modal con el reglamento del centro -->
+        <div id="modal-reglas" class="fixed inset-0 z-[200] hidden items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-md">
+            <div class="relative bg-white dark:bg-[#1f1b16] w-full max-w-2xl rounded-[3rem] shadow-2xl overflow-hidden flex flex-col animate-entrada">
+                <div class="p-8 bg-principal text-texto-principal flex flex-col gap-2">
+                    <div class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-4xl font-black">gavel</span>
+                        <h3 class="text-2xl font-black uppercase tracking-tight">Manual del Buen Humano</h3>
+                    </div>
+                    <p class="text-[10px] font-bold uppercase tracking-widest opacity-80">Lectura obligatoria para el bienestar felino</p>
+                </div>
+                <div id="scroll-reglas" class="p-8 md:p-10 overflow-y-auto max-h-[65vh] space-y-8 hide-scrollbar">
+                    <div class="bg-gray-50 dark:bg-white/5 p-6 rounded-2xl border-l-4 border-principal">
+                        <p class="text-sm text-texto-principal dark:text-gray-200 leading-relaxed italic text-justify">
+                            Catfeina es un proyecto destinado a proteger a los animales. Si no se respetan estas normas, nuestro personal podrá pedirle amablemente que abandone las instalaciones por el bienestar de nuestros residentes.
+                        </p>
+                    </div>
+                    <div class="space-y-4">
+                        <h4 class="text-xs font-black text-principal uppercase tracking-[0.2em] border-b border-gray-100 dark:border-white/5 pb-2">Interacción Respetuosa</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="flex gap-3"><span class="material-symbols-outlined text-principal text-xl">front_hand</span><div class="text-xs text-texto-secundario dark:text-gray-400"><strong>No forzar caricias</strong>: Ellos deciden cuándo interactuar.</div></div>
+                            <div class="flex gap-3"><span class="material-symbols-outlined text-principal text-xl">pan_tool_alt</span><div class="text-xs text-texto-secundario dark:text-gray-400"><strong>No coger en brazos</strong>: Prohibido levantarlos bajo ningún concepto.</div></div>
+                            <div class="flex gap-3"><span class="material-symbols-outlined text-principal text-xl">bedtime</span><div class="text-xs text-texto-secundario dark:text-gray-400"><strong>Respetar el sueño</strong>: Si un gato duerme, no lo despiertes.</div></div>
+                            <div class="flex gap-3"><span class="material-symbols-outlined text-principal text-xl">sports_kabaddi</span><div class="text-xs text-texto-secundario dark:text-gray-400"><strong>Sin juegos agresivos</strong>: No uses las manos como juguete.</div></div>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <h4 class="text-xs font-black text-principal uppercase tracking-[0.2em] border-b border-gray-100 dark:border-white/5 pb-2">Normas del Salón</h4>
+                        <div class="space-y-4">
+                            <div class="flex gap-4"><span class="material-symbols-outlined text-principal">volume_off</span><p class="text-xs text-texto-secundario dark:text-gray-400">Sin ruidos, gritos o carreras. Mantén un ambiente de paz.</p></div>
+                            <div class="flex gap-4"><span class="material-symbols-outlined text-principal">no_food</span><p class="text-xs text-texto-secundario dark:text-gray-400">Prohibido dar comida humana. Tienen su propia dieta.</p></div>
+                            <div class="flex gap-4"><span class="material-symbols-outlined text-principal">no_photography</span><p class="text-xs text-texto-secundario dark:text-gray-400">Fotos permitidas siempre <strong>SIN FLASH</strong>.</p></div>
+                            <div class="flex gap-4"><span class="material-symbols-outlined text-principal">child_care</span><p class="text-xs text-texto-secundario dark:text-gray-400">Menores de 12 años siempre acompañados por un adulto responsable.</p></div>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-orange-50/50 dark:bg-orange-900/10 rounded-2xl text-[10px] text-orange-800 dark:text-orange-200 leading-relaxed font-medium space-y-2">
+                        <p>• La entrada se hace bajo su propia responsabilidad y riesgo.</p>
+                        <p>• El local puede suponer un riesgo para personas alérgicas.</p>
+                        <p>• Prohibida la entrada con otros animales ajenos al local.</p>
+                    </div>
+                </div>
+                <div class="p-8 bg-gray-50 dark:bg-white/5 border-t border-gray-100 dark:border-white/5 text-center">
+                    <button id="btn-aceptar-reglas" type="button" disabled class="w-full py-5 bg-gray-300 text-white cursor-not-allowed font-black rounded-2xl shadow-xl uppercase tracking-widest text-xs transition-all opacity-50">
+                        LEE HASTA EL FINAL PARA ACEPTAR
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+    <script src="/components/loader.js"></script>
+    <script src="formulario.js" type="module"></script>
+</body>
+</html>

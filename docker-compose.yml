@@ -1,0 +1,33 @@
+services:
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: catfeina_db
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      DB_HOST: db
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_NAME: catfeina_db
+      DB_PORT: 3306
+      JWT_SECRET: secreto_super_seguro_catfeina_2026
+      PORT: 3000
+    depends_on:
+      db:
+        condition: service_healthy
+volumes:
+  mysql_data:
